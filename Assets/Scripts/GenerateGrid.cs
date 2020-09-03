@@ -37,7 +37,6 @@ public class GenerateGrid : MonoBehaviour
             for (int y = 0; y < sizeGrid; y++)
             {
                 GameObject instantiatedPrefab = Instantiate(go, new Vector3(startPos.transform.position.x + x * sizeBlock, startPos.transform.position.y, startPos.transform.position.z - y * sizeBlock), Quaternion.identity);
-                instantiatedPrefab.AddComponent<OutlineBox>().go = instantiatedPrefab;
             }
         }
     }
