@@ -29,7 +29,7 @@ public class GenerateGrid : MonoBehaviour
     /// <param name="cam">la caméra</param>
     private void InitGrid(List<GameObject> pRoads, int sizeGrid, Camera cam)
     {
-        GameObject go = pRoads[2];
+        GameObject go = pRoads[3];
         int sizeBlock = cam.scaledPixelWidth / sizeGrid;
         go.transform.localScale = new Vector3(sizeBlock, sizeBlock, sizeBlock);
         for (int x = 0; x < sizeGrid; x++)

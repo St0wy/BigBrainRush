@@ -5,6 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interact
+  - StartBlock
+  - EndBlock
+  - RoadStraight
+  - RoadCorner
+  - RoadTJunction
+  - RoadCrossJunction
+  - North
+  - East
+  - South
+  - West
+  - Reset
   layers:
   - Default
   - TransparentFX
