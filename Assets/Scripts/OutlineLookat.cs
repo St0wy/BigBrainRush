@@ -29,13 +29,16 @@ public class OutlineLookat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Interact"))
                 {
+                    if (Input.GetMouseButtonDown(0)) { 
+                        
+                    }
+
                     currentController = hit.collider.GetComponent<OutlineController>();
 
                     if (previousController != currentController)
                     {
                         HideOutline();
                         ShowOutline();
-                       
                     }
 
                     previousController = currentController;

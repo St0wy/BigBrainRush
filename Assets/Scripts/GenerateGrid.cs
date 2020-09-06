@@ -29,7 +29,7 @@ public class GenerateGrid : MonoBehaviour
     /// <param name="cam">la caméra</param>
     private void InitGrid(List<GameObject> pRoads, int sizeGrid, Camera cam)
     {
-        GameObject go = pRoads[3];
+        GameObject go = pRoads[0];
         int sizeBlock = cam.scaledPixelWidth / sizeGrid;
         go.transform.localScale = new Vector3(sizeBlock, sizeBlock, sizeBlock);
         for (int x = 0; x < sizeGrid; x++)
@@ -37,6 +37,10 @@ public class GenerateGrid : MonoBehaviour
             for (int y = 0; y < sizeGrid; y++)
             {
                 GameObject instantiatedPrefab = Instantiate(go, new Vector3(startPos.transform.position.x + x * sizeBlock, startPos.transform.position.y, startPos.transform.position.z - y * sizeBlock), Quaternion.identity);
+                instantiatedPrefab.name = string.Format("Road [{0}][{1}]", x,y);
+                Road refRoad = instantiatedPrefab.AddComponent<Road>() as Road;
+                refRoad.InitRoad(instantiatedPrefab, Orientation.North);
+                instantiatedPrefab.transform.parent = GameObject.Find("Grid Generation").transform;
             }
         }
     }
