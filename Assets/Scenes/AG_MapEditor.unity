@@ -174,7 +174,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 5000
   field of view: 81.350334
   orthographic: 0
   orthographic size: 5
@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72983518}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 850, z: 280}
+  m_LocalPosition: {x: 327, y: 1200, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 72983520}
-  dist: 1500
+  dist: 5000
 --- !u!1 &597663935
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -464,8 +464,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 735.7, y: 388.12}
+  m_SizeDelta: {x: -1471.2587, y: 776.2461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &667788785
 MonoBehaviour:
@@ -633,7 +633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -175.00003, y: -0.0000038146973}
+  m_AnchoredPosition: {x: -113, y: 75.028}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1064868385
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1103309198
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -535, y: -0.0000038146973}
+  m_AnchoredPosition: {x: -113, y: 259}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103309200
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1263908405
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 531, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 0, y: -463.06}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263908407
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1280725157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,8 +1074,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 875, y: -0.0000038146973}
-  m_SizeDelta: {x: 150.05525, y: 150.05525}
+  m_AnchoredPosition: {x: 158, y: -475}
+  m_SizeDelta: {x: 103.64775, y: 103.64775}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1280725159
 MonoBehaviour:
@@ -1184,7 +1184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1314079290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9999905, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 121.99999, y: 75.028015}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314079292
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1485628901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -696, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 122, y: 440}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1485628903
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1540343637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 706, y: -0.0000038146973}
+  m_AnchoredPosition: {x: -113, y: -291}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1540343639
@@ -1625,7 +1625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1554433503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -871, y: -0.0000038146973}
+  m_AnchoredPosition: {x: -113, y: 440}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554433505
@@ -1772,7 +1772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1820505500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181.99998, y: -0.0000038146973}
+  m_AnchoredPosition: {x: -0.000015259, y: -125}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1873442672
@@ -1993,7 +1993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &1930701924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,7 +2060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -357.00006, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 121.99994, y: 258.99994}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1974665614
@@ -2170,7 +2170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
 --- !u!1 &2026515821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 351, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 122, y: -291}
   m_SizeDelta: {x: 150.05525, y: 150.05525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2097123869
@@ -2461,4 +2461,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedRoad: {fileID: 0}
   roadPrefab: {fileID: 0}
-  dist: 1500
+  dist: 5000
