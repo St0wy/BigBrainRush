@@ -6,20 +6,14 @@ public class GenerateGrid : MonoBehaviour
 {
     private const int GRID_SIZE = 25;
 
-    private Color baseColor;
-
-    public List<GameObject> roadsPrefab;
+    public GameObject roadPrefab;
     public GameObject[,] roads = new GameObject[GRID_SIZE, GRID_SIZE];
     public Camera mainCamera;
     public Transform startPos;
 
     void Start()
     {
-        if (roadsPrefab == null)
-        {
-            roadsPrefab = new List<GameObject>();
-        }
-        InitGrid(roadsPrefab, GRID_SIZE, mainCamera);
+        InitGrid(roadPrefab, GRID_SIZE, mainCamera);
     }
     /// <summary>
     /// Initialise la grille
@@ -27,9 +21,9 @@ public class GenerateGrid : MonoBehaviour
     /// <param name="pRoads">La liste des prefabs de routes</param>
     /// <param name="sizeGrid">la taille de la grille</param>
     /// <param name="cam">la caméra</param>
-    private void InitGrid(List<GameObject> pRoads, int sizeGrid, Camera cam)
+    public void InitGrid(GameObject pRoads, int sizeGrid, Camera cam)
     {
-        GameObject go = pRoads[0];
+        GameObject go = pRoads;
         int sizeBlock = cam.scaledPixelWidth / sizeGrid;
         go.transform.localScale = new Vector3(sizeBlock, sizeBlock, sizeBlock);
         for (int x = 0; x < sizeGrid; x++)

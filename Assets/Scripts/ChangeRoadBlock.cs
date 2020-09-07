@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChangeRoadBlock : MonoBehaviour
@@ -99,17 +100,17 @@ public class ChangeRoadBlock : MonoBehaviour
                     roadRotation = selectedRoad.transform.rotation;
                     roadOrientation = Orientation.West;
                     break;
-                case "Reset":
-                    Debug.LogError("IL FAUDRAIT REGEN LA GRILLE EN FAIT");
+                case "ResetGrid":
+                    Scene scene = SceneManager.GetActiveScene();
+                    SceneManager.LoadScene(scene.name);
                     break;
                 default: break;
             }
 
             GameObject newRoad = Instantiate(selectedRoad, oldRoad.transform.position, roadRotation);
-            refRoad = newRoad.AddComponent<Road>();
-            newRoad.name = selectedRoad.name;
-
-            refRoad = refRoad.InitRoad(newRoad.gameObject, roadOrientation);
+            if (newRoad.GetComponent<Road>() == null) {
+                newRoad.AddComponent<Road>().InitRoad(newRoad.gameObject, roadOrientation);
+            }
 
             selectedRoad = newRoad;
 
