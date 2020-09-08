@@ -104,6 +104,9 @@ public class ChangeRoadBlock : MonoBehaviour
                     Scene scene = SceneManager.GetActiveScene();
                     SceneManager.LoadScene(scene.name);
                     break;
+                case "RemoveRoad":
+                    selectedRoad = pRoadPrefab;
+                    break;
                 default: break;
             }
 

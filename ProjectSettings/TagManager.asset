@@ -16,6 +16,7 @@ TagManager:
   - South
   - West
   - Reset
+  - RemoveRoad
   layers:
   - Default
   - TransparentFX
