@@ -37,17 +37,39 @@ public class ChangeRoadBlock : MonoBehaviour
                     {
                         selectedRoad = hit.collider.gameObject;
                         ChangeRoad(roadPrefab);
+                        ChangeRoadOrientation(selectedRoad);
+                        Debug.Log(selectedRoad);
+                        Debug.Log(selectedRoad.GetComponent<Road>()._orientation);
                     }
                 }
             }
         }
     }
 
+    public void ChangeRoadOrientation(GameObject roadToRotate)
+    {
+        if (EventSystem.current.currentSelectedGameObject != null)
+        {
+            switch (EventSystem.current.currentSelectedGameObject.name)
+            {
+                case "Orientation North":
+                    selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.North);
+                    break;
+                case "Orientation East":
+                   selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.East);
+                    break;
+                case "Orientation South":
+                    selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.South);
+                    break;
+                case "Orientation West":
+                    selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.West);
+                    break;
+            }
+        }
+    }
     public void ChangeRoad(GameObject pRoadPrefab)
     {
         Road refRoad = selectedRoad.GetComponent<Road>();
-        Quaternion roadRotation = quaternion.identity;
-        Orientation roadOrientation = Orientation.North;
         if (pRoadPrefab == null)
         {
             roadPrefab = selectedRoad;
@@ -80,26 +102,6 @@ public class ChangeRoadBlock : MonoBehaviour
                 case "CrossJunction":
                     selectedRoad = pRoadPrefab;
                     break;
-                case "Orientation North":
-                    selectedRoad = refRoad.ChangeOrientation(Orientation.North);
-                    roadRotation = selectedRoad.transform.rotation;
-                    roadOrientation = Orientation.North;
-                    break;
-                case "Orientation East":
-                    selectedRoad = refRoad.ChangeOrientation(Orientation.East);
-                    roadRotation = selectedRoad.transform.rotation;
-                    roadOrientation = Orientation.East;
-                    break;
-                case "Orientation South":
-                    selectedRoad = refRoad.ChangeOrientation(Orientation.South);
-                    roadRotation = selectedRoad.transform.rotation;
-                    roadOrientation = Orientation.South;
-                    break;
-                case "Orientation West":
-                    selectedRoad = refRoad.ChangeOrientation(Orientation.West);
-                    roadRotation = selectedRoad.transform.rotation;
-                    roadOrientation = Orientation.West;
-                    break;
                 case "ResetGrid":
                     Scene scene = SceneManager.GetActiveScene();
                     SceneManager.LoadScene(scene.name);
@@ -110,13 +112,12 @@ public class ChangeRoadBlock : MonoBehaviour
                 default: break;
             }
 
-            GameObject newRoad = Instantiate(selectedRoad, oldRoad.transform.position, roadRotation);
-            if (newRoad.GetComponent<Road>() == null) {
-                newRoad.AddComponent<Road>().InitRoad(newRoad.gameObject, roadOrientation);
+            GameObject newRoad = Instantiate(selectedRoad, oldRoad.transform.position, quaternion.identity);
+            if (newRoad.GetComponent<Road>() == null)
+            {
+                newRoad.AddComponent<Road>().InitRoad(newRoad.gameObject);
             }
-
             selectedRoad = newRoad;
-
             oldRoad.SetActive(false);
         }
     }

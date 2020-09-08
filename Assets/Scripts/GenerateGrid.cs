@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GenerateGrid : MonoBehaviour
 {
-    private const int GRID_SIZE = 10;
+    private const int GRID_SIZE = 25;
 
     public GameObject roadPrefab;
     public GameObject[,] roads = new GameObject[GRID_SIZE, GRID_SIZE];
@@ -48,7 +48,6 @@ public class GenerateGrid : MonoBehaviour
         foreach (GameObject go in pRoads)
         {
             go.transform.localScale = new Vector3(sizeBlock, sizeBlock, sizeBlock);
-            Debug.Log(sizeBlock);
         }
     }
 }
