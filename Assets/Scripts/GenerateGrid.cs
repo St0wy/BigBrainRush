@@ -32,7 +32,7 @@ public class GenerateGrid : MonoBehaviour
         {
             for (int y = 0; y < sizeGrid; y++)
             {
-                GameObject instantiatedPrefab = Instantiate(go, new Vector3(startPos.transform.position.x + x * sizeBlock, startPos.transform.position.y, startPos.transform.position.z - y * sizeBlock), Quaternion.identity);
+                GameObject instantiatedPrefab = (GameObject)Instantiate(go, new Vector3(startPos.transform.position.x + x * sizeBlock, startPos.transform.position.y, startPos.transform.position.z - y * sizeBlock), Quaternion.identity);
                 instantiatedPrefab.name = string.Format("Road [{0}][{1}]", x,y);
                 //instantiatedPrefab.transform.localScale = new Vector3(sizeBlock, sizeBlock, sizeBlock);
                 Road refRoad = instantiatedPrefab.AddComponent<Road>() as Road;

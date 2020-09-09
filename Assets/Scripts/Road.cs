@@ -46,7 +46,7 @@ public class Road : MonoBehaviour
             default:
                 break;
         }
-        return this._roadPrefab;
+        return this._roadPrefab.gameObject;
     }
 
     private void Update()

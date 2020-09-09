@@ -11,9 +11,6 @@ public class ChangeRoadBlock : MonoBehaviour
     public GameObject selectedRoad;
     public GameObject roadPrefab;
     public float dist;
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -37,36 +34,12 @@ public class ChangeRoadBlock : MonoBehaviour
                     {
                         selectedRoad = hit.collider.gameObject;
                         ChangeRoad(roadPrefab);
-                        ChangeRoadOrientation(selectedRoad);
-                        Debug.Log(selectedRoad);
-                        Debug.Log(selectedRoad.GetComponent<Road>()._orientation);
                     }
                 }
             }
         }
     }
 
-    public void ChangeRoadOrientation(GameObject roadToRotate)
-    {
-        if (EventSystem.current.currentSelectedGameObject != null)
-        {
-            switch (EventSystem.current.currentSelectedGameObject.name)
-            {
-                case "Orientation North":
-                    selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.North);
-                    break;
-                case "Orientation East":
-                   selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.East);
-                    break;
-                case "Orientation South":
-                    selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.South);
-                    break;
-                case "Orientation West":
-                    selectedRoad = roadToRotate.GetComponent<Road>().ChangeOrientation(Orientation.West);
-                    break;
-            }
-        }
-    }
     public void ChangeRoad(GameObject pRoadPrefab)
     {
         Road refRoad = selectedRoad.GetComponent<Road>();
@@ -112,10 +85,10 @@ public class ChangeRoadBlock : MonoBehaviour
                 default: break;
             }
 
-            GameObject newRoad = Instantiate(selectedRoad, oldRoad.transform.position, quaternion.identity);
-            if (newRoad.GetComponent<Road>() == null)
+            GameObject newRoad = (GameObject)Instantiate(selectedRoad, oldRoad.transform.position, quaternion.identity);
+            if (newRoad.gameObject.GetComponent<Road>() == null)
             {
-                newRoad.AddComponent<Road>().InitRoad(newRoad.gameObject);
+                newRoad.gameObject.AddComponent<Road>().InitRoad(newRoad.gameObject);
             }
             selectedRoad = newRoad;
             oldRoad.SetActive(false);
