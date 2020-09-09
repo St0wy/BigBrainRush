@@ -17,6 +17,7 @@ TagManager:
   - West
   - Reset
   - RemoveRoad
+  - Control
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class ChangeRoadOrientation : MonoBehaviour
 {
     public GameObject selectedRoad;
     public float dist;
-    void Start()
+    void Awake()
     {
     }
 
@@ -29,42 +29,59 @@ public class ChangeRoadOrientation : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Interact"))
                 {
-                    if (Input.GetMouseButtonDown(1))
+                    if (Input.GetMouseButtonDown(0))
                     {
                         selectedRoad = hit.collider.gameObject;
-                        ChangeOrientation(selectedRoad);
-                        Debug.Log(selectedRoad);
-                        Debug.Log(selectedRoad.GetComponent<Road>()._orientation);
                     }
                 }
             }
         }
     }
 
-    public void ChangeOrientation(GameObject roadToRotate)
-    {
-        GameObject clickedButton = EventSystem.current.currentSelectedGameObject.gameObject;
-        if (clickedButton != null)
+    public void SelectOrientation(string pOrientation) {
+        switch (pOrientation)
         {
-            if (roadToRotate != null)
+            case "North":
+                ChangeOrientation(selectedRoad, Orientation.North);
+                break;
+            case "East":
+                ChangeOrientation(selectedRoad, Orientation.East);
+
+                break;
+            case "South":
+                ChangeOrientation(selectedRoad, Orientation.South);
+
+                break;
+            case "West":
+                ChangeOrientation(selectedRoad, Orientation.West);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public GameObject ChangeOrientation(GameObject roadToRotate, Orientation pOrientation)
+    {
+        if (roadToRotate != null)
+        {
+            switch (pOrientation)
             {
-                Debug.Log("javel");
-                switch (EventSystem.current.currentSelectedGameObject.name)
-                {
-                    case "Orientation North":
-                        selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(Orientation.North);
-                        break;
-                    case "Orientation East":
-                        selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(Orientation.East);
-                        break;
-                    case "Orientation South":
-                        selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(Orientation.South);
-                        break;
-                    case "Orientation West":
-                        selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(Orientation.West);
-                        break;
-                }
+                case Orientation.North:
+                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    break;
+                case Orientation.East:
+                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    break;
+                case Orientation.South:
+                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    break;
+                case Orientation.West:
+                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    break;
+                default:
+                    break;
             }
         }
+        return selectedRoad;
     }
 }

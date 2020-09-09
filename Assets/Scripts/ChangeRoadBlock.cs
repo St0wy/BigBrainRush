@@ -8,10 +8,15 @@ using UnityEngine.UI;
 
 public class ChangeRoadBlock : MonoBehaviour
 {
+    public List<GameObject> roadsInGrid;
     public GameObject selectedRoad;
     public GameObject roadPrefab;
     public float dist;
+    public SerializeMap sm;
 
+    private void Start()
+    {
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,16 +38,20 @@ public class ChangeRoadBlock : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         selectedRoad = hit.collider.gameObject;
-                        ChangeRoad(roadPrefab);
+                        ReplacingBlock(roadPrefab);
                     }
                 }
             }
         }
     }
 
-    public void ChangeRoad(GameObject pRoadPrefab)
+    public void ReplacingBlock(GameObject pRoadPrefab) {
+        ChangeRoad(pRoadPrefab, roadsInGrid);
+    }
+
+    public void ChangeRoad(GameObject pRoadPrefab, List<GameObject> roads)
     {
-        Road refRoad = selectedRoad.GetComponent<Road>();
+        
         if (pRoadPrefab == null)
         {
             roadPrefab = selectedRoad;
@@ -52,6 +61,10 @@ public class ChangeRoadBlock : MonoBehaviour
             roadPrefab = pRoadPrefab;
         }
         GameObject oldRoad = selectedRoad;
+
+        Road refRoad = selectedRoad.GetComponent<Road>();
+        Road oldRefRoad = oldRoad.GetComponent<Road>();
+
 
         if (EventSystem.current.currentSelectedGameObject != null)
         {
@@ -84,7 +97,10 @@ public class ChangeRoadBlock : MonoBehaviour
                     break;
                 default: break;
             }
-
+            refRoad._id = oldRefRoad._id;
+            roads.RemoveAt(oldRefRoad._id);
+            roads.Insert(refRoad._id, selectedRoad);
+            sm.roadsPrefabInGrid = roads;
             GameObject newRoad = (GameObject)Instantiate(selectedRoad, oldRoad.transform.position, quaternion.identity);
             if (newRoad.gameObject.GetComponent<Road>() == null)
             {
