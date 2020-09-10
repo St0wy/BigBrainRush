@@ -45,13 +45,14 @@ public class ChangeRoadBlock : MonoBehaviour
         }
     }
 
-    public void ReplacingBlock(GameObject pRoadPrefab) {
+    public void ReplacingBlock(GameObject pRoadPrefab)
+    {
         ChangeRoad(pRoadPrefab, roadsInGrid);
     }
 
     public void ChangeRoad(GameObject pRoadPrefab, List<GameObject> roads)
     {
-        
+
         if (pRoadPrefab == null)
         {
             roadPrefab = selectedRoad;
@@ -100,7 +101,11 @@ public class ChangeRoadBlock : MonoBehaviour
             refRoad._id = oldRefRoad._id;
             roads.RemoveAt(oldRefRoad._id);
             roads.Insert(refRoad._id, selectedRoad);
-            sm.roadsPrefabInGrid = roads;
+            sm = GameObject.Find("Serialize").GetComponent<SerializeMap>();
+            if (sm != null)
+            {
+                sm.roadsPrefabInGrid = roads;
+            }
             GameObject newRoad = (GameObject)Instantiate(selectedRoad, oldRoad.transform.position, quaternion.identity);
             if (newRoad.gameObject.GetComponent<Road>() == null)
             {

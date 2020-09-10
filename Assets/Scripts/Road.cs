@@ -13,6 +13,7 @@ public class Road : MonoBehaviour
     private const int NO_ID = -1;
 
     public int _id;
+    [SerializeField]
     public GameObject _roadPrefab;
     public Orientation _orientation;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GenerateGrid : MonoBehaviour
 {
-    private const int GRID_SIZE = 25;
+    private const int GRID_SIZE = 5;
 
     public GameObject roadPrefab;
     public GameObject[,] roads = new GameObject[GRID_SIZE, GRID_SIZE];

@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
 using UnityEngine;
 
 public class SerializeMap : MonoBehaviour
@@ -22,11 +19,16 @@ public class SerializeMap : MonoBehaviour
 
     private void SerializeRoads(string filename, List<Road> pRoads)
     {
-        XmlSerializer serializer =
-      new XmlSerializer(typeof(Road));
-        TextWriter writer = new StreamWriter(filename);
-        serializer.Serialize(writer, pRoads);
-        writer.Close();
+        string str = filename;
+        string json = "[{";
+        json += "\"Roads\":{";
+
+        foreach (Road r in pRoads)
+        {
+            json += string.Format("id:{0}, roadPrefab:{1}, orientation:\"{2}\"",r._id, r._roadPrefab, r._orientation);
+        }
+        json += "}]";
+
     }
 
     public List<Road> GetRoadsClassFromPrefab(List<GameObject> pRoadsPrefab) {
