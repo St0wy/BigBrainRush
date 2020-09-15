@@ -7,9 +7,6 @@ public class ChangeRoadOrientation : MonoBehaviour
 {
     public GameObject selectedRoad;
     public float dist;
-    void Awake()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -20,9 +17,8 @@ public class ChangeRoadOrientation : MonoBehaviour
     private void HandleLookAtRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, dist))
+        if (Physics.Raycast(ray, out RaycastHit hit, dist))
         {
             Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
             if (hit.transform != null)
@@ -67,16 +63,16 @@ public class ChangeRoadOrientation : MonoBehaviour
             switch (pOrientation)
             {
                 case Orientation.North:
-                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    selectedRoad = roadToRotate.gameObject.GetComponent<OldRoad>().ChangeOrientation(pOrientation);
                     break;
                 case Orientation.East:
-                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    selectedRoad = roadToRotate.gameObject.GetComponent<OldRoad>().ChangeOrientation(pOrientation);
                     break;
                 case Orientation.South:
-                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    selectedRoad = roadToRotate.gameObject.GetComponent<OldRoad>().ChangeOrientation(pOrientation);
                     break;
                 case Orientation.West:
-                    selectedRoad = roadToRotate.gameObject.GetComponent<Road>().ChangeOrientation(pOrientation);
+                    selectedRoad = roadToRotate.gameObject.GetComponent<OldRoad>().ChangeOrientation(pOrientation);
                     break;
                 default:
                     break;

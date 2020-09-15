@@ -63,8 +63,8 @@ public class ChangeRoadBlock : MonoBehaviour
         }
         GameObject oldRoad = selectedRoad;
 
-        Road refRoad = selectedRoad.GetComponent<Road>();
-        Road oldRefRoad = oldRoad.GetComponent<Road>();
+        OldRoad refRoad = selectedRoad.GetComponent<OldRoad>();
+        OldRoad oldRefRoad = oldRoad.GetComponent<OldRoad>();
 
 
         if (EventSystem.current.currentSelectedGameObject != null)
@@ -107,9 +107,9 @@ public class ChangeRoadBlock : MonoBehaviour
                 sm.roadsPrefabInGrid = roads;
             }
             GameObject newRoad = (GameObject)Instantiate(selectedRoad, oldRoad.transform.position, quaternion.identity);
-            if (newRoad.gameObject.GetComponent<Road>() == null)
+            if (newRoad.gameObject.GetComponent<OldRoad>() == null)
             {
-                newRoad.gameObject.AddComponent<Road>().InitRoad(newRoad.gameObject);
+                newRoad.gameObject.AddComponent<OldRoad>().InitRoad(newRoad.gameObject);
             }
             selectedRoad = newRoad;
             oldRoad.SetActive(false);

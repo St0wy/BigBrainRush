@@ -6,7 +6,7 @@ using UnityEngine;
 public class SerializeMap : MonoBehaviour
 {
     public List<GameObject> roadsPrefabInGrid;
-    public List<Road> roads;
+    public List<OldRoad> roads;
 
     public void Awake()
     {
@@ -17,13 +17,13 @@ public class SerializeMap : MonoBehaviour
         SerializeRoads(filename, roads);
     }
 
-    private void SerializeRoads(string filename, List<Road> pRoads)
+    private void SerializeRoads(string filename, List<OldRoad> pRoads)
     {
         string str = filename;
         string json = "[{";
         json += "\"Roads\":{";
 
-        foreach (Road r in pRoads)
+        foreach (OldRoad r in pRoads)
         {
             json += string.Format("id:{0}, roadPrefab:{1}, orientation:\"{2}\"",r._id, r._roadPrefab, r._orientation);
         }
@@ -31,11 +31,11 @@ public class SerializeMap : MonoBehaviour
 
     }
 
-    public List<Road> GetRoadsClassFromPrefab(List<GameObject> pRoadsPrefab) {
-        List<Road> roads = new List<Road>();
+    public List<OldRoad> GetRoadsClassFromPrefab(List<GameObject> pRoadsPrefab) {
+        List<OldRoad> roads = new List<OldRoad>();
         foreach (GameObject road in pRoadsPrefab)
         {
-            roads.Add(road.GetComponent<Road>());
+            roads.Add(road.GetComponent<OldRoad>());
         }
         return roads;
     }

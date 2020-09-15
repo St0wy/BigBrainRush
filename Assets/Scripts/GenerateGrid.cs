@@ -33,6 +33,7 @@ public class GenerateGrid : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// Initialise la grille
     /// </summary>
@@ -52,7 +53,7 @@ public class GenerateGrid : MonoBehaviour
                 GameObject instantiatedPrefab = (GameObject)Instantiate(go, new Vector3(startPos.transform.position.x + x * sizeBlock, startPos.transform.position.y, startPos.transform.position.z - y * sizeBlock), Quaternion.identity);
                 instantiatedPrefab.name = string.Format("Road [{0}][{1}]", x, y);
                 //instantiatedPrefab.transform.localScale = new Vector3(sizeBlock, sizeBlock, sizeBlock);
-                Road refRoad = instantiatedPrefab.AddComponent<Road>() as Road;
+                OldRoad refRoad = instantiatedPrefab.AddComponent<OldRoad>() as OldRoad;
                 refRoad.InitRoad(instantiatedPrefab, Orientation.North, x * y);
                 instantiatedPrefab.transform.parent = GameObject.Find("Grid Generation").transform;
                 roads.Add(instantiatedPrefab);
