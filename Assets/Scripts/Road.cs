@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
 
-class Road
+public class Road
 {
     #region Enums
     /// <summary>
@@ -17,13 +17,15 @@ class Road
     /// </summary>
     public enum RoadType
     {
-        Straight, Turn, TJunction, Crossroads, Start, End
+        Straight, Turn, TJunction, Crossroads, Start, End, Empty
     }
     #endregion
 
     #region Properties
-    public RoadOrientation Orientation { get; private set; }
-    public RoadType Type { get; private set; }
+    public RoadOrientation Orientation { get; set; }
+
+    public RoadType Type { get; set; }
+
     public GameObject Prefab
     {
         get
