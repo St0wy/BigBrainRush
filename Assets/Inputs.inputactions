@@ -1,0 +1,33 @@
+{
+    "name": "Inputs",
+    "maps": [
+        {
+            "name": "MapEditor",
+            "id": "3343762b-201d-4472-8f8d-f2451b54f1ac",
+            "actions": [
+                {
+                    "name": "PlaceRoad",
+                    "type": "Button",
+                    "id": "a0d91037-8342-4062-ad68-36772bf6acba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "db90adfd-486c-42a6-b736-091565f161a0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceRoad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

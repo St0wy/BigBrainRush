@@ -682,8 +682,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 72983520}
-  mapSize: 0
-  highlightRange: 0
+  mapSize: 25
+  highlightRange: 5000
   startPosition: {fileID: 1930701925}
 --- !u!4 &950550516
 Transform:
@@ -804,7 +804,6 @@ GameObject:
   - component: {fileID: 1064868386}
   - component: {fileID: 1064868385}
   - component: {fileID: 1064868387}
-  - component: {fileID: 1064868388}
   m_Layer: 5
   m_Name: TJunction
   m_TagString: Control
@@ -912,7 +911,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1064868388}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
         m_MethodName: ReplacingBlock
         m_Mode: 2
@@ -924,23 +923,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1064868388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1064868383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!1 &1103309198
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +935,6 @@ GameObject:
   - component: {fileID: 1103309201}
   - component: {fileID: 1103309200}
   - component: {fileID: 1103309202}
-  - component: {fileID: 1103309203}
   m_Layer: 5
   m_Name: Straight
   m_TagString: Control
@@ -1061,7 +1042,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1103309203}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
         m_MethodName: ReplacingBlock
         m_Mode: 2
@@ -1073,23 +1054,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1103309203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103309198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!1 &1263908405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,7 +1066,6 @@ GameObject:
   - component: {fileID: 1263908408}
   - component: {fileID: 1263908407}
   - component: {fileID: 1263908409}
-  - component: {fileID: 1263908410}
   - component: {fileID: 1263908411}
   m_Layer: 5
   m_Name: Orientation South
@@ -1223,23 +1186,6 @@ MonoBehaviour:
           m_StringArgument: South
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1263908410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263908405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!114 &1263908411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,7 +1212,6 @@ GameObject:
   - component: {fileID: 1280725160}
   - component: {fileID: 1280725159}
   - component: {fileID: 1280725161}
-  - component: {fileID: 1280725162}
   m_Layer: 5
   m_Name: ResetGrid
   m_TagString: Control
@@ -1374,7 +1319,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1280725162}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
         m_MethodName: ReplacingBlock
         m_Mode: 2
@@ -1386,23 +1331,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1280725162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280725157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!1 &1314079290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,7 +1343,6 @@ GameObject:
   - component: {fileID: 1314079293}
   - component: {fileID: 1314079292}
   - component: {fileID: 1314079294}
-  - component: {fileID: 1314079295}
   m_Layer: 5
   m_Name: CrossJunction
   m_TagString: Control
@@ -1523,7 +1450,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1314079295}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
         m_MethodName: ReplacingBlock
         m_Mode: 2
@@ -1535,23 +1462,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1314079295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314079290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!1 &1485628901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,7 +1474,6 @@ GameObject:
   - component: {fileID: 1485628904}
   - component: {fileID: 1485628903}
   - component: {fileID: 1485628905}
-  - component: {fileID: 1485628906}
   m_Layer: 5
   m_Name: End
   m_TagString: Control
@@ -1672,35 +1581,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1485628906}
-        m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
-        m_MethodName: ReplacingBlock
-        m_Mode: 2
+      - m_Target: {fileID: 950550515}
+        m_TargetAssemblyTypeName: MapEditor, Assembly-CSharp
+        m_MethodName: SelectRoadType
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 3438253292951175543, guid: 9f75450a2fa08aa4783172ea31bc28b6, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1485628906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485628901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!1 &1540343637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1605,6 @@ GameObject:
   - component: {fileID: 1540343640}
   - component: {fileID: 1540343639}
   - component: {fileID: 1540343641}
-  - component: {fileID: 1540343642}
   - component: {fileID: 1540343643}
   m_Layer: 5
   m_Name: Orientation West
@@ -1834,23 +1725,6 @@ MonoBehaviour:
           m_StringArgument: West
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1540343642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540343637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!114 &1540343643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1991,7 +1865,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2008,7 +1882,6 @@ GameObject:
   - component: {fileID: 1667202620}
   - component: {fileID: 1667202619}
   - component: {fileID: 1667202618}
-  - component: {fileID: 1667202617}
   m_Layer: 5
   m_Name: RemoveRoad
   m_TagString: Control
@@ -2035,23 +1908,6 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: -475}
   m_SizeDelta: {x: 103.64775, y: 103.64775}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1667202617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667202615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!114 &1667202618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,7 +1951,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1667202617}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
         m_MethodName: ReplacingBlock
         m_Mode: 2
@@ -2231,7 +2087,6 @@ GameObject:
   - component: {fileID: 1873442673}
   - component: {fileID: 1873442672}
   - component: {fileID: 1873442674}
-  - component: {fileID: 1873442675}
   - component: {fileID: 1873442676}
   m_Layer: 5
   m_Name: Orientation North
@@ -2352,23 +2207,6 @@ MonoBehaviour:
           m_StringArgument: North
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1873442675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873442670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!114 &1873442676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,7 +2263,6 @@ GameObject:
   - component: {fileID: 1974665615}
   - component: {fileID: 1974665614}
   - component: {fileID: 1974665616}
-  - component: {fileID: 1974665617}
   m_Layer: 5
   m_Name: Corner
   m_TagString: Control
@@ -2533,7 +2370,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1974665617}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
         m_MethodName: ReplacingBlock
         m_Mode: 2
@@ -2545,23 +2382,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1974665617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974665612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!1 &2026515821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2541,6 @@ GameObject:
   - component: {fileID: 2097123870}
   - component: {fileID: 2097123869}
   - component: {fileID: 2097123871}
-  - component: {fileID: 2097123872}
   - component: {fileID: 2097123873}
   m_Layer: 5
   m_Name: Orientation East
@@ -2842,23 +2661,6 @@ MonoBehaviour:
           m_StringArgument: East
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2097123872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097123867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bbce918fce04e4094b8d51d0a97e24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsInGrid: []
-  selectedRoad: {fileID: 0}
-  roadPrefab: {fileID: 0}
-  dist: 5000
-  sm: {fileID: 0}
 --- !u!114 &2097123873
 MonoBehaviour:
   m_ObjectHideFlags: 0

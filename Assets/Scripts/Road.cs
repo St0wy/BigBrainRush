@@ -21,6 +21,9 @@ public class Road
     }
     #endregion
 
+    private const RoadOrientation DEFAULT_ORIENTATION = RoadOrientation.North;
+    private const RoadType DEFAULT_ROAD_TYPE = RoadType.Empty;
+
     #region Properties
     public RoadOrientation Orientation { get; set; }
 
@@ -40,4 +43,6 @@ public class Road
         Orientation = orientation;
         Type = type;
     }
+
+    public Road() : this (DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE) { }
 }

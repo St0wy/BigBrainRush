@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 class Map
 {
     private const int DEFAULT_MAP_SIZE = 25;
-    private Road[,] map;
+    private readonly Road[,] map;
 
     public int Size => (int)Math.Sqrt(map.Length);
 
@@ -17,7 +17,17 @@ class Map
         this.map = map;
     }
 
-    public Map(int mapSize) : this(new Road[mapSize, mapSize]) { }
+    public Map(int mapSize)
+    {
+        map = new Road[mapSize, mapSize];
+        for (int x = 0; x < mapSize; x++)
+        {
+            for (int y = 0; y < mapSize; y++)
+            {
+                map[x, y] = new Road();
+            }
+        }
+    }
 
     public Map() : this(DEFAULT_MAP_SIZE) { }
 
@@ -25,4 +35,6 @@ class Map
     {
         map[x, y].Type = roadType;
     }
+
+    public Road.RoadType GetRoadType(int x, int y) => map[x, y].Type;
 }
