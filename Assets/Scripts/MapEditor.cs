@@ -61,7 +61,7 @@ public class MapEditor : MonoBehaviour
 
             // Get the positions of the clicked block
             BlockBehaviour blockBehaviour = hit.collider.GetComponent<BlockBehaviour>();
-            Debug.Log($"X : {blockBehaviour.X}, Y : {blockBehaviour.Y}");
+            Debug.Log(blockBehaviour);
             
             // Check if we clicked on an object with a blockBehaviour
             if (blockBehaviour == null)
@@ -79,6 +79,7 @@ public class MapEditor : MonoBehaviour
             BlockBehaviour newBlockBehaviour = road.AddComponent<BlockBehaviour>();
             newBlockBehaviour.X = blockBehaviour.X;
             newBlockBehaviour.Y = blockBehaviour.Y;
+
 
 
             // Destroy the old block
