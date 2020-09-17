@@ -24,8 +24,13 @@ public class MapEditor : MonoBehaviour
 
     private void Awake()
     {
-        mapSize = DEFAULT_MAP_SIZE;
-        highlightRange = DEFAULT_HIGHLIGHT_RANGE;
+        //Init
+
+        //Check if it's unset
+        if (mapSize == 0)
+            mapSize = DEFAULT_MAP_SIZE;
+        if (highlightRange == 0)
+            highlightRange = DEFAULT_HIGHLIGHT_RANGE;
 
         map = mapSize == 0 ? new Map() : new Map(mapSize);
 
@@ -62,7 +67,7 @@ public class MapEditor : MonoBehaviour
             // Get the positions of the clicked block
             BlockBehaviour blockBehaviour = hit.collider.GetComponent<BlockBehaviour>();
             Debug.Log(blockBehaviour);
-            
+
             // Check if we clicked on an object with a blockBehaviour
             if (blockBehaviour == null)
                 return;
@@ -75,11 +80,12 @@ public class MapEditor : MonoBehaviour
             Vector3 roadPos = hit.transform.position;
             Quaternion roadRotation = Quaternion.Euler(0, (int)selectedRoadOrientation * 90, 0);
             GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, roadRotation);
+            road.transform.parent = GameObject.FindWithTag("MapEditor").transform;
             road.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
             BlockBehaviour newBlockBehaviour = road.AddComponent<BlockBehaviour>();
             newBlockBehaviour.X = blockBehaviour.X;
             newBlockBehaviour.Y = blockBehaviour.Y;
-
+            road.name = $"Block [{blockBehaviour.X}] [{blockBehaviour.Y}]";
 
 
             // Destroy the old block
@@ -92,7 +98,7 @@ public class MapEditor : MonoBehaviour
     /// </summary>
     private void GenerateEmptyGrid()
     {
-        
+
         for (int x = 0; x < map.Size; x++)
         {
             for (int y = 0; y < map.Size; y++)
@@ -135,11 +141,11 @@ public class MapEditor : MonoBehaviour
     public void RotateOrientation(int direction)
     {
         int orientationValue = (int)selectedRoadOrientation + direction;
-        if(orientationValue < 0)
+        if (orientationValue < 0)
         {
             orientationValue = 3;
         }
-        else if(orientationValue > 3)
+        else if (orientationValue > 3)
         {
             orientationValue = 0;
         }

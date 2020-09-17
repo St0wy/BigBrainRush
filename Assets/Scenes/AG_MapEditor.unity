@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 950550515}
   m_Layer: 0
   m_Name: Map Editor
-  m_TagString: Untagged
+  m_TagString: MapEditor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
   mainCamera: {fileID: 72983520}
   startPosition: {fileID: 1930701925}
   planeRenderer: {fileID: 2026515823}
-  mapSize: 25
+  mapSize: 5
   highlightRange: 5000
 --- !u!4 &950550516
 Transform:

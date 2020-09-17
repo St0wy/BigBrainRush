@@ -3,7 +3,22 @@ guid: 062575cb15916be4b91903b504e0d1bb
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: asphalt
+    second: {fileID: 2100000, guid: 902bf4d621716c045970db3e589d82e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grass
+    second: {fileID: 2100000, guid: 6e6555658f8b05f4680a9151ab441282, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pavement
+    second: {fileID: 2100000, guid: 00e62479daa830042a72d60c99e3f23a, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
