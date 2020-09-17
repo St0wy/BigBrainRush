@@ -4,27 +4,38 @@ using UnityEngine.InputSystem;
 
 public class MapEditor : MonoBehaviour
 {
-    private const int NO_GRID_SIZE = 0;
+    private const int DEFAULT_MAP_SIZE = 25;
+    private const int DEFAULT_HIGHLIGHT_RANGE = 5000;
 
     public Camera mainCamera;
-    public int mapSize;
-    public int highlightRange;
     public Transform startPosition;
+    public Renderer planeRenderer;
+
+    [SerializeField]
+    private int mapSize;
+    [SerializeField]
+    private int highlightRange;
 
     private Map map;
     private Road.RoadType selectedRoadType;
+    private Road.RoadOrientation selectedRoadOrientation;
     private Inputs inputs;
-    private int blockScale;
+    private float blockScale;
 
     private void Awake()
     {
-        map = mapSize == NO_GRID_SIZE ? new Map() : new Map(mapSize);
+        mapSize = DEFAULT_MAP_SIZE;
+        highlightRange = DEFAULT_HIGHLIGHT_RANGE;
+
+        map = mapSize == 0 ? new Map() : new Map(mapSize);
 
         selectedRoadType = Road.RoadType.Empty;
         inputs = new Inputs();
 
         inputs.MapEditor.PlaceRoad.performed += PlaceRoadPerformed;
-        blockScale = mainCamera.scaledPixelWidth / map.Size;
+        inputs.MapEditor.RotateOrientation.performed += ctx => RotateOrientation((int)ctx.ReadValue<float>());
+
+        blockScale = planeRenderer.bounds.size.x / map.Size;
     }
 
     private void Start()
@@ -37,7 +48,6 @@ public class MapEditor : MonoBehaviour
     /// </summary>
     private void PlaceRoadPerformed(InputAction.CallbackContext obj)
     {
-        
         // Ray of the mouse from the camera
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
@@ -52,17 +62,19 @@ public class MapEditor : MonoBehaviour
             // Get the positions of the clicked block
             BlockBehaviour blockBehaviour = hit.collider.GetComponent<BlockBehaviour>();
             Debug.Log($"X : {blockBehaviour.X}, Y : {blockBehaviour.Y}");
-
+            
             // Check if we clicked on an object with a blockBehaviour
             if (blockBehaviour == null)
                 return;
 
             // Sets the block in the map object.
             map.SetRoadType(blockBehaviour.X, blockBehaviour.Y, selectedRoadType);
+            map.SetRoadOrientation(blockBehaviour.X, blockBehaviour.Y, selectedRoadOrientation);
 
             // Place the new block 
             Vector3 roadPos = hit.transform.position;
-            GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, Quaternion.identity);
+            Quaternion roadRotation = Quaternion.Euler(0, (int)selectedRoadOrientation * 90, 0);
+            GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, roadRotation);
             road.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
             BlockBehaviour newBlockBehaviour = road.AddComponent<BlockBehaviour>();
             newBlockBehaviour.X = blockBehaviour.X;
@@ -110,6 +122,37 @@ public class MapEditor : MonoBehaviour
     public void SelectRoadType(int roadType)
     {
         selectedRoadType = (Road.RoadType)roadType;
+    }
+
+    /// <summary>
+    /// Rotate the orientation for the next road that's going to be placed.
+    /// </summary>
+    /// <param name="direction"> 
+    /// The direction to go to, see Road.RoadOrientation to see the enum that represents it.
+    /// If we are at the east, -1 is going to make us to the north and +1 to the south.
+    /// </param>
+    public void RotateOrientation(int direction)
+    {
+        int orientationValue = (int)selectedRoadOrientation + direction;
+        if(orientationValue < 0)
+        {
+            orientationValue = 3;
+        }
+        else if(orientationValue > 3)
+        {
+            orientationValue = 0;
+        }
+
+        SelectOrientation((Road.RoadOrientation)orientationValue);
+    }
+
+    /// <summary>
+    /// Change the selected orientation.
+    /// </summary>
+    /// <param name="orientation">The number to use is defined in the Road.RoadOrientation enum.</param>
+    public void SelectOrientation(Road.RoadOrientation orientation)
+    {
+        selectedRoadOrientation = orientation;
     }
 
     private void OnEnable()

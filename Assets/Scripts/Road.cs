@@ -9,7 +9,8 @@ public class Road
     /// </summary>
     public enum RoadOrientation
     {
-        North, South, East, West
+
+        East, North, West, South
     }
 
     /// <summary>

@@ -201,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72983518}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 327, y: 1200, z: -10}
+  m_LocalPosition: {x: 4.84, y: 6.87, z: 0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -465,7 +465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 735.7, y: 388.12}
+  m_AnchoredPosition: {x: 735.6992, y: 388.12012}
   m_SizeDelta: {x: -1471.2587, y: 776.2461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &667788785
@@ -518,7 +518,6 @@ GameObject:
   - component: {fileID: 746539338}
   - component: {fileID: 746539337}
   - component: {fileID: 746539336}
-  - component: {fileID: 746539335}
   m_Layer: 5
   m_Name: Serialize
   m_TagString: Control
@@ -545,20 +544,6 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: -121}
   m_SizeDelta: {x: 103.64775, y: 103.64775}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &746539335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746539333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97972f8a77d6c7745868188dfb871bd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roadsPrefabInGrid: []
-  roads: []
 --- !u!114 &746539336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,7 +587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 746539335}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SerializeMap, Assembly-CSharp
         m_MethodName: Serialize
         m_Mode: 5
@@ -682,9 +667,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 72983520}
+  startPosition: {fileID: 1930701925}
+  planeRenderer: {fileID: 2026515823}
   mapSize: 25
   highlightRange: 5000
-  startPosition: {fileID: 1930701925}
 --- !u!4 &950550516
 Transform:
   m_ObjectHideFlags: 0
@@ -693,12 +679,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950550514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2026515825}
   - {fileID: 1930701925}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957828159
 GameObject:
@@ -1042,13 +1029,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeRoadBlock, Assembly-CSharp
-        m_MethodName: ReplacingBlock
-        m_Mode: 2
+      - m_Target: {fileID: 950550515}
+        m_TargetAssemblyTypeName: MapEditor, Assembly-CSharp
+        m_MethodName: SelectRoadType
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 3430790976565625324, guid: 58ad95c994a0b584ba73160954d2fbc0, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1066,7 +1053,6 @@ GameObject:
   - component: {fileID: 1263908408}
   - component: {fileID: 1263908407}
   - component: {fileID: 1263908409}
-  - component: {fileID: 1263908411}
   m_Layer: 5
   m_Name: Orientation South
   m_TagString: Control
@@ -1174,7 +1160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1263908411}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadOrientation, Assembly-CSharp
         m_MethodName: SelectOrientation
         m_Mode: 5
@@ -1186,20 +1172,6 @@ MonoBehaviour:
           m_StringArgument: South
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1263908411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263908405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06450b70b3c86643a54ad5399a3a687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedRoad: {fileID: 0}
-  dist: 5000
 --- !u!1 &1280725157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,7 +1577,6 @@ GameObject:
   - component: {fileID: 1540343640}
   - component: {fileID: 1540343639}
   - component: {fileID: 1540343641}
-  - component: {fileID: 1540343643}
   m_Layer: 5
   m_Name: Orientation West
   m_TagString: Control
@@ -1713,7 +1684,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1540343643}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadOrientation, Assembly-CSharp
         m_MethodName: SelectOrientation
         m_Mode: 5
@@ -1725,20 +1696,6 @@ MonoBehaviour:
           m_StringArgument: West
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1540343643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540343637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06450b70b3c86643a54ad5399a3a687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedRoad: {fileID: 0}
-  dist: 5000
 --- !u!1 &1554433503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,7 +2044,6 @@ GameObject:
   - component: {fileID: 1873442673}
   - component: {fileID: 1873442672}
   - component: {fileID: 1873442674}
-  - component: {fileID: 1873442676}
   m_Layer: 5
   m_Name: Orientation North
   m_TagString: Control
@@ -2195,7 +2151,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1873442676}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadOrientation, Assembly-CSharp
         m_MethodName: SelectOrientation
         m_Mode: 5
@@ -2207,20 +2163,6 @@ MonoBehaviour:
           m_StringArgument: North
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1873442676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873442670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06450b70b3c86643a54ad5399a3a687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedRoad: {fileID: 0}
-  dist: 5000
 --- !u!1 &1930701924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,11 +2187,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930701924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -892, y: 25, z: 900}
+  m_LocalPosition: {x: -5, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 950550516}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974665612
 GameObject:
@@ -2393,7 +2335,6 @@ GameObject:
   - component: {fileID: 2026515825}
   - component: {fileID: 2026515824}
   - component: {fileID: 2026515823}
-  - component: {fileID: 2026515822}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -2401,20 +2342,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &2026515822
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026515821}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2026515823
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2471,12 +2398,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026515821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 950550516}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070623283
 GameObject:
@@ -2527,7 +2454,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2097123867
 GameObject:
@@ -2541,7 +2468,6 @@ GameObject:
   - component: {fileID: 2097123870}
   - component: {fileID: 2097123869}
   - component: {fileID: 2097123871}
-  - component: {fileID: 2097123873}
   m_Layer: 5
   m_Name: Orientation East
   m_TagString: Control
@@ -2649,7 +2575,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097123873}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeRoadOrientation, Assembly-CSharp
         m_MethodName: SelectOrientation
         m_Mode: 5
@@ -2661,17 +2587,3 @@ MonoBehaviour:
           m_StringArgument: East
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2097123873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097123867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b06450b70b3c86643a54ad5399a3a687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedRoad: {fileID: 0}
-  dist: 5000
