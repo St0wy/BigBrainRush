@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts;
+using System;
 using UnityEngine;
 
+[Serializable]
 public class Road
 {
     #region Enums
@@ -9,7 +11,6 @@ public class Road
     /// </summary>
     public enum RoadOrientation
     {
-
         East, North, West, South
     }
 
@@ -25,10 +26,15 @@ public class Road
     private const RoadOrientation DEFAULT_ORIENTATION = RoadOrientation.North;
     private const RoadType DEFAULT_ROAD_TYPE = RoadType.Empty;
 
-    #region Properties
-    public RoadOrientation Orientation { get; set; }
+    [SerializeField]
+    private RoadOrientation orientation;
+    [SerializeField]
+    private RoadType type;
 
-    public RoadType Type { get; set; }
+    #region Properties
+    public RoadOrientation Orientation { get => orientation; set => orientation = value; }
+
+    public RoadType Type { get => type; set => type = value; }
 
     public GameObject Prefab
     {
@@ -45,5 +51,5 @@ public class Road
         Type = type;
     }
 
-    public Road() : this (DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE) { }
+    public Road() : this(DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE) { }
 }

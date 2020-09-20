@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts;
+using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,8 +10,7 @@ public class MapEditor : MonoBehaviour
     private const int DEFAULT_HIGHLIGHT_RANGE = 5000;
 
     public Camera mainCamera;
-    public Transform startPosition;
-    public Renderer planeRenderer;
+    public GameObject plane;
 
     [SerializeField]
     private int mapSize;
@@ -21,11 +22,10 @@ public class MapEditor : MonoBehaviour
     private Road.RoadOrientation selectedRoadOrientation;
     private Inputs inputs;
     private float blockScale;
+    private Renderer planeRenderer;
 
     private void Awake()
     {
-        //Init
-
         //Check if it's unset
         if (mapSize == 0)
             mapSize = DEFAULT_MAP_SIZE;
@@ -40,7 +40,22 @@ public class MapEditor : MonoBehaviour
         inputs.MapEditor.PlaceRoad.performed += PlaceRoadPerformed;
         inputs.MapEditor.RotateOrientation.performed += ctx => RotateOrientation((int)ctx.ReadValue<float>());
 
+        planeRenderer = plane.GetComponent<Renderer>();
         blockScale = planeRenderer.bounds.size.x / map.Size;
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.sKey.IsPressed())
+        {
+            Debug.Log("Saving ^^");
+            SaveSystem.SaveMap(map, $"{Application.persistentDataPath}/mamap.bbrm");
+        }
+        if (Keyboard.current.lKey.IsPressed())
+        {
+            Debug.Log("Loading :3");
+            // TODO: Load map ^^'
+        }
     }
 
     private void Start()
@@ -66,7 +81,6 @@ public class MapEditor : MonoBehaviour
 
             // Get the positions of the clicked block
             BlockBehaviour blockBehaviour = hit.collider.GetComponent<BlockBehaviour>();
-            Debug.Log(blockBehaviour);
 
             // Check if we clicked on an object with a blockBehaviour
             if (blockBehaviour == null)
@@ -98,13 +112,15 @@ public class MapEditor : MonoBehaviour
     /// </summary>
     private void GenerateEmptyGrid()
     {
-
         for (int x = 0; x < map.Size; x++)
         {
             for (int y = 0; y < map.Size; y++)
             {
                 // Compute position
-                Vector3 position = startPosition.position;
+                float posX = plane.transform.position.x - planeRenderer.bounds.size.x / 2 + blockScale / 2;
+                float posZ = plane.transform.position.z + planeRenderer.bounds.size.z / 2 - blockScale / 2;
+
+                Vector3 position = new Vector3(posX, plane.transform.position.y, posZ);
                 position = new Vector3(position.x + x * blockScale, position.y, position.z - y * blockScale);
 
                 // Instantiate an empty block and changes its size according to the width of the screen

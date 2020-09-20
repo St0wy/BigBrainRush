@@ -1,16 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
+using UnityEngine;
 
-class Map
+[Serializable]
+[XmlInclude(typeof(Road))]
+public class Map
 {
     private const int DEFAULT_MAP_SIZE = 25;
+
+    [SerializeField]
     private readonly Road[,] map;
+    [SerializeField]
+    private string name;
 
     public int Size => (int)Math.Sqrt(map.Length);
+
+    public string Name { get => name; set => name = value; }
 
     public Map(Road[,] map)
     {
