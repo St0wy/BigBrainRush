@@ -8,7 +8,7 @@ public class MapEditor : MonoBehaviour
 {
     private const int DEFAULT_MAP_SIZE = 25;
     private const int DEFAULT_HIGHLIGHT_RANGE = 5000;
-
+    private const string ROAD_TAG = "Road";
     public Camera mainCamera;
     public GameObject plane;
 
@@ -46,15 +46,42 @@ public class MapEditor : MonoBehaviour
 
     private void Update()
     {
+        //Shortcuts for the save / load map
         if (Keyboard.current.sKey.IsPressed())
         {
-            Debug.Log("Saving ^^");
-            SaveSystem.SaveMap(map, $"{Application.persistentDataPath}/mamap.bbrm");
+            Debug.Log("Saving...");
+            SaveSystem.SaveMap(map);
         }
         if (Keyboard.current.lKey.IsPressed())
         {
-            Debug.Log("Loading :3");
-            // TODO: Load map ^^'
+            Debug.Log("Loading...");
+            GenerateGridFromMap(SaveSystem.LoadMap());
+        }
+
+        //Shortcuts for roads type selection /!\ À revoir si c'est utile
+        if (Keyboard.current.digit1Key.IsPressed())
+        {
+            SelectRoadType(0);
+        }
+        if (Keyboard.current.digit2Key.IsPressed())
+        {
+            SelectRoadType(1);
+        }
+        if (Keyboard.current.digit3Key.IsPressed())
+        {
+            SelectRoadType(2);
+        }
+        if (Keyboard.current.digit4Key.IsPressed())
+        {
+            SelectRoadType(3);
+        }
+        if (Keyboard.current.digit5Key.IsPressed())
+        {
+            SelectRoadType(4);
+        }
+        if (Keyboard.current.digit6Key.IsPressed())
+        {
+            SelectRoadType(5);
         }
     }
 
@@ -108,7 +135,7 @@ public class MapEditor : MonoBehaviour
     }
 
     /// <summary>
-    /// Generate an empty gridon the scene.
+    /// Generate an empty grid on the scene.
     /// </summary>
     private void GenerateEmptyGrid()
     {
@@ -134,6 +161,53 @@ public class MapEditor : MonoBehaviour
                 BlockBehaviour blockBehaviour = instantiatedBlock.AddComponent<BlockBehaviour>();
                 blockBehaviour.X = x;
                 blockBehaviour.Y = y;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Generate an grid from a Map on scene
+    /// </summary>
+    /// <param name="map">The loaded map</param>
+    private void GenerateGridFromMap(Map map)
+    {
+        //Delete all the existing roads
+        GameObject[] roadsGameObject = GameObject.FindGameObjectsWithTag(ROAD_TAG);
+        for (int i = 0; i < roadsGameObject.Length; i++)
+        {
+            Destroy(roadsGameObject[i]);
+        }
+
+        //Recompute the blockScale depending on the loaded map size
+        blockScale = planeRenderer.bounds.size.x / map.Size;
+
+        //Generate grid
+        for (int x = 0; x < map.Size; x++)
+        {
+            for (int y = 0; y < map.Size; y++)
+            {
+                // Compute position
+                float posX = plane.transform.position.x - planeRenderer.bounds.size.x / 2 + blockScale / 2;
+                float posZ = plane.transform.position.z + planeRenderer.bounds.size.z / 2 - blockScale / 2;
+
+                Vector3 position = new Vector3(posX, plane.transform.position.y, posZ);
+                position = new Vector3(position.x + x * blockScale, position.y, position.z - y * blockScale);
+                Quaternion roadRotation = Quaternion.Euler(0, (int)map.GetRoadOrientation(x, y) * 90, 0);
+
+                // Instantiate an empty block and changes its size according to the width of the screen
+                GameObject blockPrefab = RoadAssets.Instance.roadsPrefabs[(int)map.GetRoadType(x, y)];
+                blockPrefab.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
+                GameObject instantiatedBlock = Instantiate(blockPrefab, position, roadRotation);
+
+                instantiatedBlock.name = $"Block [{x}][{y}]";
+                instantiatedBlock.transform.parent = transform;
+
+                // Add block behaviour
+                BlockBehaviour blockBehaviour = instantiatedBlock.AddComponent<BlockBehaviour>();
+                blockBehaviour.X = x;
+                blockBehaviour.Y = y;
+
+                map.SetRoadOrientation(blockBehaviour.X, blockBehaviour.Y, selectedRoadOrientation);
             }
         }
     }
