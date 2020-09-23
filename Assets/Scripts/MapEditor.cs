@@ -8,9 +8,10 @@ public class MapEditor : MonoBehaviour
 {
     private const int DEFAULT_MAP_SIZE = 25;
     private const int DEFAULT_HIGHLIGHT_RANGE = 5000;
-    private const string ROAD_TAG = "Road";
+
     public Camera mainCamera;
     public GameObject plane;
+    public GameObject roads;
 
     [SerializeField]
     private int mapSize;
@@ -23,6 +24,7 @@ public class MapEditor : MonoBehaviour
     private Inputs inputs;
     private float blockScale;
     private Renderer planeRenderer;
+    private GameObject[,] blocks;
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class MapEditor : MonoBehaviour
             highlightRange = DEFAULT_HIGHLIGHT_RANGE;
 
         map = mapSize == 0 ? new Map() : new Map(mapSize);
+        blocks = new GameObject[map.Size, map.Size];
 
         selectedRoadType = Road.RoadType.Empty;
         inputs = new Inputs();
@@ -55,39 +58,13 @@ public class MapEditor : MonoBehaviour
         if (Keyboard.current.lKey.IsPressed())
         {
             Debug.Log("Loading...");
-            GenerateGridFromMap(SaveSystem.LoadMap());
-        }
-
-        //Shortcuts for roads type selection /!\ À revoir si c'est utile
-        if (Keyboard.current.digit1Key.IsPressed())
-        {
-            SelectRoadType(0);
-        }
-        if (Keyboard.current.digit2Key.IsPressed())
-        {
-            SelectRoadType(1);
-        }
-        if (Keyboard.current.digit3Key.IsPressed())
-        {
-            SelectRoadType(2);
-        }
-        if (Keyboard.current.digit4Key.IsPressed())
-        {
-            SelectRoadType(3);
-        }
-        if (Keyboard.current.digit5Key.IsPressed())
-        {
-            SelectRoadType(4);
-        }
-        if (Keyboard.current.digit6Key.IsPressed())
-        {
-            SelectRoadType(5);
+            GenerateGrid(SaveSystem.LoadMap());
         }
     }
 
     private void Start()
     {
-        GenerateEmptyGrid();
+        GenerateGrid(map);
     }
 
     /// <summary>
@@ -95,6 +72,59 @@ public class MapEditor : MonoBehaviour
     /// </summary>
     private void PlaceRoadPerformed(InputAction.CallbackContext obj)
     {
+        Vector2Int posInGrid = GetMouseCoordinateInMap();
+        if (posInGrid.x == -1 || posInGrid.y == -1)
+            return;
+
+        // Sets the block in the map object.
+        map.SetRoadType(posInGrid.x, posInGrid.y, selectedRoadType);
+        map.SetRoadOrientation(posInGrid.x, posInGrid.y, selectedRoadOrientation);
+
+        // Compute block position
+        Vector3 roadPos = MapPointToWorldPoint(posInGrid.x, posInGrid.y);
+        Quaternion roadRotation = Quaternion.Euler(0, (int)selectedRoadOrientation * 90, 0);
+
+        // Place the new block 
+        GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, roadRotation);
+        road.transform.parent = roads.transform;
+        road.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
+
+        BlockBehaviour newBlockBehaviour = road.AddComponent<BlockBehaviour>();
+        newBlockBehaviour.X = posInGrid.x;
+        newBlockBehaviour.Y = posInGrid.y;
+        road.name = $"Block [{posInGrid.x}] [{posInGrid.y}]";
+
+        // Place road in array
+        GameObject oldBlock = blocks[posInGrid.x, posInGrid.y];
+        blocks[posInGrid.x, posInGrid.y] = road;
+
+        // Destroy the old block
+        Destroy(oldBlock);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public Vector3 MapPointToWorldPoint(int x, int y)
+    {
+        float posX = plane.transform.position.x - planeRenderer.bounds.size.x / 2 + blockScale / 2;
+        float posZ = plane.transform.position.z + planeRenderer.bounds.size.z / 2 - blockScale / 2;
+
+        Vector3 position = new Vector3(posX, plane.transform.position.y, posZ);
+        return new Vector3(position.x + x * blockScale, position.y, position.z - y * blockScale);
+    }
+
+    /// <summary>
+    /// Get the position in the map of the mouse.
+    /// </summary>
+    /// <returns>Return the coordinate in the map. Invalid if X and Y are -1.</returns>
+    public Vector2Int GetMouseCoordinateInMap()
+    {
+        Vector2Int mouseCoord = new Vector2Int(-1, -1);
+
         // Ray of the mouse from the camera
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
@@ -103,79 +133,29 @@ public class MapEditor : MonoBehaviour
         {
             Debug.DrawRay(ray.origin, ray.direction * 1000, Color.yellow);
             // Check if we hit something
-            if (hit.transform == null)
-                return;
-
-            // Get the positions of the clicked block
-            BlockBehaviour blockBehaviour = hit.collider.GetComponent<BlockBehaviour>();
-
-            // Check if we clicked on an object with a blockBehaviour
-            if (blockBehaviour == null)
-                return;
-
-            // Sets the block in the map object.
-            map.SetRoadType(blockBehaviour.X, blockBehaviour.Y, selectedRoadType);
-            map.SetRoadOrientation(blockBehaviour.X, blockBehaviour.Y, selectedRoadOrientation);
-
-            // Place the new block 
-            Vector3 roadPos = hit.transform.position;
-            Quaternion roadRotation = Quaternion.Euler(0, (int)selectedRoadOrientation * 90, 0);
-            GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, roadRotation);
-            road.transform.parent = GameObject.FindWithTag("MapEditor").transform;
-            road.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
-            BlockBehaviour newBlockBehaviour = road.AddComponent<BlockBehaviour>();
-            newBlockBehaviour.X = blockBehaviour.X;
-            newBlockBehaviour.Y = blockBehaviour.Y;
-            road.name = $"Block [{blockBehaviour.X}] [{blockBehaviour.Y}]";
-
-
-            // Destroy the old block
-            Destroy(blockBehaviour.gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Generate an empty grid on the scene.
-    /// </summary>
-    private void GenerateEmptyGrid()
-    {
-        for (int x = 0; x < map.Size; x++)
-        {
-            for (int y = 0; y < map.Size; y++)
+            if (hit.transform != null)
             {
-                // Compute position
-                float posX = plane.transform.position.x - planeRenderer.bounds.size.x / 2 + blockScale / 2;
-                float posZ = plane.transform.position.z + planeRenderer.bounds.size.z / 2 - blockScale / 2;
-
-                Vector3 position = new Vector3(posX, plane.transform.position.y, posZ);
-                position = new Vector3(position.x + x * blockScale, position.y, position.z - y * blockScale);
-
-                // Instantiate an empty block and changes its size according to the width of the screen
-                GameObject blockPrefab = RoadAssets.Instance.roadsPrefabs[(int)map.GetRoadType(x, y)];
-                blockPrefab.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
-                GameObject instantiatedBlock = Instantiate(blockPrefab, position, Quaternion.identity);
-                instantiatedBlock.name = $"Block [{x}][{y}]";
-                instantiatedBlock.transform.parent = transform;
-
-                // Add block behaviour
-                BlockBehaviour blockBehaviour = instantiatedBlock.AddComponent<BlockBehaviour>();
-                blockBehaviour.X = x;
-                blockBehaviour.Y = y;
+                BlockBehaviour blockBehaviour = hit.collider.GetComponent<BlockBehaviour>();
+                if (blockBehaviour != null)
+                {
+                    mouseCoord = blockBehaviour.Position;
+                }
             }
         }
+
+        return mouseCoord;
     }
 
     /// <summary>
     /// Generate an grid from a Map on scene
     /// </summary>
     /// <param name="map">The loaded map</param>
-    private void GenerateGridFromMap(Map map)
+    private void GenerateGrid(Map map)
     {
         //Delete all the existing roads
-        GameObject[] roadsGameObject = GameObject.FindGameObjectsWithTag(ROAD_TAG);
-        for (int i = 0; i < roadsGameObject.Length; i++)
+        foreach (Transform child in roads.transform)
         {
-            Destroy(roadsGameObject[i]);
+            Destroy(child.gameObject);
         }
 
         //Recompute the blockScale depending on the loaded map size
@@ -187,12 +167,8 @@ public class MapEditor : MonoBehaviour
             for (int y = 0; y < map.Size; y++)
             {
                 // Compute position
-                float posX = plane.transform.position.x - planeRenderer.bounds.size.x / 2 + blockScale / 2;
-                float posZ = plane.transform.position.z + planeRenderer.bounds.size.z / 2 - blockScale / 2;
-
-                Vector3 position = new Vector3(posX, plane.transform.position.y, posZ);
-                position = new Vector3(position.x + x * blockScale, position.y, position.z - y * blockScale);
-                Quaternion roadRotation = Quaternion.Euler(0, (int)map.GetRoadOrientation(x, y) * 90, 0);
+                Vector3 position = MapPointToWorldPoint(x, y);
+                Quaternion roadRotation = Quaternion.Euler(0, map.GetRoadAngle(x, y), 0);
 
                 // Instantiate an empty block and changes its size according to the width of the screen
                 GameObject blockPrefab = RoadAssets.Instance.roadsPrefabs[(int)map.GetRoadType(x, y)];
@@ -200,7 +176,8 @@ public class MapEditor : MonoBehaviour
                 GameObject instantiatedBlock = Instantiate(blockPrefab, position, roadRotation);
 
                 instantiatedBlock.name = $"Block [{x}][{y}]";
-                instantiatedBlock.transform.parent = transform;
+                instantiatedBlock.transform.parent = roads.transform;
+                blocks[x, y] = instantiatedBlock;
 
                 // Add block behaviour
                 BlockBehaviour blockBehaviour = instantiatedBlock.AddComponent<BlockBehaviour>();

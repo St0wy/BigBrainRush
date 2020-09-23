@@ -12,6 +12,8 @@ public class BlockBehaviour : MonoBehaviour
     private int y;
 
     public int X { get => x; set => x = value; }
+
     public int Y { get => y; set => y = value; }
 
+    public Vector2Int Position { get => new Vector2Int(X, Y); }
 }

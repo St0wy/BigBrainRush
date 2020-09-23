@@ -42,7 +42,10 @@ public class Map
     }
 
     public Road.RoadType GetRoadType(int x, int y) => map[x, y].Type;
+
     public Road.RoadOrientation GetRoadOrientation(int x, int y) => map[x, y].Orientation;
+
+    public int GetRoadAngle(int x, int y) => (int)GetRoadOrientation(x, y) * 90;
 
     public void SetRoadOrientation(int x, int y, Road.RoadOrientation roadOrientation)
     {
