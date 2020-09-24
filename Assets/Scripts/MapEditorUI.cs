@@ -12,6 +12,7 @@ public class MapEditorUI : MonoBehaviour
     public Button buttonCrossroad;
     public Button buttonStart;
     public Button buttonEnd;
+    public Button buttonDelete;
 
     private void Update()
     {
@@ -45,6 +46,11 @@ public class MapEditorUI : MonoBehaviour
         {
             buttonEnd.onClick.Invoke();
             buttonEnd.Select();
+        }
+        if (Keyboard.current.digit7Key.IsPressed())
+        {
+            buttonDelete.onClick.Invoke();
+            buttonDelete.Select();
         }
     }
 }
