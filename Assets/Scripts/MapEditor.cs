@@ -82,7 +82,7 @@ public class MapEditor : MonoBehaviour
 
         // Compute block position
         Vector3 roadPos = MapPointToWorldPoint(posInGrid.x, posInGrid.y);
-        Quaternion roadRotation = Quaternion.Euler(0, (int)selectedRoadOrientation * 90, 0);
+        Quaternion roadRotation = Quaternion.Euler(0, Road.GetAngle(selectedRoadOrientation), 0);
 
         // Place the new block 
         GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, roadRotation);

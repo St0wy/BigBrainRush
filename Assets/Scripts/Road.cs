@@ -52,4 +52,9 @@ public class Road
     }
 
     public Road() : this(DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE) { }
+
+    public static float GetAngle(RoadOrientation orientation)
+    {
+        return (int)orientation * 90;
+    }
 }
