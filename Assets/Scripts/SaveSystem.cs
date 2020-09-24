@@ -15,6 +15,7 @@ public static class SaveSystem
     private const string WINDOW_TITLE = "Choose a folder to save your map";
     private const string DEFAULT_NAME = "my_map";
     private const string DIRECTORY = "";
+
     public static bool SaveMap(Map map)
     {
         //Regex to get only what is between / and .bbrm
