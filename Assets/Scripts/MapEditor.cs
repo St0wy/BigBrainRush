@@ -47,19 +47,15 @@ public class MapEditor : MonoBehaviour
         blockScale = planeRenderer.bounds.size.x / map.Size;
     }
 
-    private void Update()
+
+    public void SaveMap()
     {
-        //Shortcuts for the save / load map
-        if (Keyboard.current.sKey.IsPressed())
-        {
-            Debug.Log("Saving...");
-            SaveSystem.SaveMap(map);
-        }
-        if (Keyboard.current.lKey.IsPressed())
-        {
-            Debug.Log("Loading...");
-            GenerateGrid(SaveSystem.LoadMap());
-        }
+        SaveSystem.SaveMap(map);
+
+    }
+    public void LoadMap()
+    {
+        SaveSystem.LoadMap();
     }
 
     private void Start()

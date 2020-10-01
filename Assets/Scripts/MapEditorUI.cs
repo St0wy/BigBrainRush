@@ -14,6 +14,8 @@ public class MapEditorUI : MonoBehaviour
     public Button buttonEnd;
     public Button buttonDelete;
 
+    public GameObject pauseMenu;
+
     private Inputs inputActions;
 
     private void Awake()
@@ -26,10 +28,10 @@ public class MapEditorUI : MonoBehaviour
             buttonStraight.Select();
         };
 
-        //inputActions.MapEditor.ShowPauseMenu.started += ctx =>
-        //{
-
-        //}
+        inputActions.MapEditor.ShowPauseMenu.started += ctx =>
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+        };
     }
 
     private void Update()
