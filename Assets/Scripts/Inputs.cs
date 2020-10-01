@@ -33,6 +33,22 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectButtonStraight"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0db49ba-547f-4356-a66f-e94934fb8b1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShowPauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""fbe43584-c98f-439f-b73d-7fe5ebd0367b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -79,6 +95,28 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""action"": ""RotateOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""846d4030-cd9b-4ce1-9635-03eeb0c18809"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectButtonStraight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7507cc32-6a30-47f5-b30f-c81718169aa4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowPauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -196,6 +234,8 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_MapEditor = asset.FindActionMap("MapEditor", throwIfNotFound: true);
         m_MapEditor_PlaceRoad = m_MapEditor.FindAction("PlaceRoad", throwIfNotFound: true);
         m_MapEditor_RotateOrientation = m_MapEditor.FindAction("RotateOrientation", throwIfNotFound: true);
+        m_MapEditor_SelectButtonStraight = m_MapEditor.FindAction("SelectButtonStraight", throwIfNotFound: true);
+        m_MapEditor_ShowPauseMenu = m_MapEditor.FindAction("ShowPauseMenu", throwIfNotFound: true);
         // Car
         m_Car = asset.FindActionMap("Car", throwIfNotFound: true);
         m_Car_Steer = m_Car.FindAction("Steer", throwIfNotFound: true);
@@ -251,12 +291,16 @@ public class @Inputs : IInputActionCollection, IDisposable
     private IMapEditorActions m_MapEditorActionsCallbackInterface;
     private readonly InputAction m_MapEditor_PlaceRoad;
     private readonly InputAction m_MapEditor_RotateOrientation;
+    private readonly InputAction m_MapEditor_SelectButtonStraight;
+    private readonly InputAction m_MapEditor_ShowPauseMenu;
     public struct MapEditorActions
     {
         private @Inputs m_Wrapper;
         public MapEditorActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @PlaceRoad => m_Wrapper.m_MapEditor_PlaceRoad;
         public InputAction @RotateOrientation => m_Wrapper.m_MapEditor_RotateOrientation;
+        public InputAction @SelectButtonStraight => m_Wrapper.m_MapEditor_SelectButtonStraight;
+        public InputAction @ShowPauseMenu => m_Wrapper.m_MapEditor_ShowPauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_MapEditor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +316,12 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @RotateOrientation.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnRotateOrientation;
                 @RotateOrientation.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnRotateOrientation;
                 @RotateOrientation.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnRotateOrientation;
+                @SelectButtonStraight.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonStraight;
+                @SelectButtonStraight.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonStraight;
+                @SelectButtonStraight.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonStraight;
+                @ShowPauseMenu.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
+                @ShowPauseMenu.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
+                @ShowPauseMenu.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
             }
             m_Wrapper.m_MapEditorActionsCallbackInterface = instance;
             if (instance != null)
@@ -282,6 +332,12 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @RotateOrientation.started += instance.OnRotateOrientation;
                 @RotateOrientation.performed += instance.OnRotateOrientation;
                 @RotateOrientation.canceled += instance.OnRotateOrientation;
+                @SelectButtonStraight.started += instance.OnSelectButtonStraight;
+                @SelectButtonStraight.performed += instance.OnSelectButtonStraight;
+                @SelectButtonStraight.canceled += instance.OnSelectButtonStraight;
+                @ShowPauseMenu.started += instance.OnShowPauseMenu;
+                @ShowPauseMenu.performed += instance.OnShowPauseMenu;
+                @ShowPauseMenu.canceled += instance.OnShowPauseMenu;
             }
         }
     }
@@ -340,6 +396,8 @@ public class @Inputs : IInputActionCollection, IDisposable
     {
         void OnPlaceRoad(InputAction.CallbackContext context);
         void OnRotateOrientation(InputAction.CallbackContext context);
+        void OnSelectButtonStraight(InputAction.CallbackContext context);
+        void OnShowPauseMenu(InputAction.CallbackContext context);
     }
     public interface ICarActions
     {

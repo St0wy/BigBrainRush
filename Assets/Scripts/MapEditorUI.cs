@@ -14,6 +14,24 @@ public class MapEditorUI : MonoBehaviour
     public Button buttonEnd;
     public Button buttonDelete;
 
+    private Inputs inputActions;
+
+    private void Awake()
+    {
+        inputActions = new Inputs();
+
+        inputActions.MapEditor.SelectButtonStraight.performed += (ctx) =>
+        {
+            buttonStraight.onClick.Invoke();
+            buttonStraight.Select();
+        };
+
+        //inputActions.MapEditor.ShowPauseMenu.started += ctx =>
+        //{
+
+        //}
+    }
+
     private void Update()
     {
         //Shortcuts for roads type selection
@@ -52,5 +70,15 @@ public class MapEditorUI : MonoBehaviour
             buttonDelete.onClick.Invoke();
             buttonDelete.Select();
         }
+    }
+
+    private void OnEnable()
+    {
+        inputActions.MapEditor.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.MapEditor.Disable();
     }
 }
