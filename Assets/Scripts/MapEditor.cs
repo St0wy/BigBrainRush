@@ -55,7 +55,7 @@ public class MapEditor : MonoBehaviour
     }
     public void LoadMap()
     {
-        SaveSystem.LoadMap();
+        GenerateGrid(SaveSystem.LoadMap());
     }
 
     private void Start()

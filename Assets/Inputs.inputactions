@@ -30,9 +30,57 @@
                     "interactions": ""
                 },
                 {
+                    "name": "SelectButtonTurn",
+                    "type": "Button",
+                    "id": "5e37d7d7-0f8b-4234-84ac-00d664811adc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "ShowPauseMenu",
                     "type": "Button",
                     "id": "fbe43584-c98f-439f-b73d-7fe5ebd0367b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectButtonTJunction",
+                    "type": "Button",
+                    "id": "bfdff75b-ccce-4e2f-a298-091399d606f8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectButtonCrossroad",
+                    "type": "Button",
+                    "id": "2b8ede85-5f42-487d-b949-8783043df4b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectButtonStart",
+                    "type": "Button",
+                    "id": "728bc402-dc03-4d15-85f5-1085c9572327",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectButtonEnd",
+                    "type": "Button",
+                    "id": "7491e43c-a992-4a87-b307-182265884354",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectButtonDelete",
+                    "type": "Button",
+                    "id": "aa2e282b-b1c3-45a1-b5a0-048f52be9d1c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -96,12 +144,89 @@
                 },
                 {
                     "name": "",
+                    "id": "64c187c6-0aad-4498-9f06-9fa0cd7812a7",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7507cc32-6a30-47f5-b30f-c81718169aa4",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ShowPauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50b5e9a0-888a-4d8d-ba23-3ba5c5fc5d0b",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonTJunction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1f50b59-0419-4f14-a6f3-ae1d326f3ba9",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonCrossroad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb0c8132-5c6e-491a-9987-5ac8f6439f72",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ac69bb1-6f90-4dc4-a4b4-944f440f3dfd",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca6a5414-7d03-4c52-b859-b0118e13189e",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonDelete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b807eed-6d0c-4d0f-8470-e4471c30a5a3",
+                    "path": "<Keyboard>/delete",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectButtonDelete",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

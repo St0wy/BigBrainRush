@@ -28,6 +28,42 @@ public class MapEditorUI : MonoBehaviour
             buttonStraight.Select();
         };
 
+        inputActions.MapEditor.SelectButtonTurn.performed += (ctx) =>
+        {
+            buttonTurn.onClick.Invoke();
+            buttonTurn.Select();
+        };
+
+        inputActions.MapEditor.SelectButtonTJunction.performed += (ctx) =>
+        {
+            buttonTJunction.onClick.Invoke();
+            buttonTJunction.Select();
+        };
+
+        inputActions.MapEditor.SelectButtonCrossroad.performed += (ctx) =>
+        {
+            buttonCrossroad.onClick.Invoke();
+            buttonCrossroad.Select();
+        };
+
+        inputActions.MapEditor.SelectButtonStart.performed += (ctx) =>
+        {
+            buttonStart.onClick.Invoke();
+            buttonStart.Select();
+        };
+
+        inputActions.MapEditor.SelectButtonEnd.performed += (ctx) =>
+        {
+            buttonEnd.onClick.Invoke();
+            buttonEnd.Select();
+        };
+
+        inputActions.MapEditor.SelectButtonDelete.performed += (ctx) =>
+        {
+            buttonDelete.onClick.Invoke();
+            buttonDelete.Select();
+        };
+
         inputActions.MapEditor.ShowPauseMenu.started += ctx =>
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
