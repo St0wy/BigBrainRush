@@ -51,14 +51,6 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ShowPauseMenu"",
-                    ""type"": ""Button"",
-                    ""id"": ""fbe43584-c98f-439f-b73d-7fe5ebd0367b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""SelectButtonTJunction"",
                     ""type"": ""Button"",
                     ""id"": ""bfdff75b-ccce-4e2f-a298-091399d606f8"",
@@ -94,6 +86,14 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""name"": ""SelectButtonDelete"",
                     ""type"": ""Button"",
                     ""id"": ""aa2e282b-b1c3-45a1-b5a0-048f52be9d1c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShowPauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""fbe43584-c98f-439f-b73d-7fe5ebd0367b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -168,17 +168,6 @@ public class @Inputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7507cc32-6a30-47f5-b30f-c81718169aa4"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ShowPauseMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""50b5e9a0-888a-4d8d-ba23-3ba5c5fc5d0b"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
@@ -240,6 +229,17 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SelectButtonDelete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7507cc32-6a30-47f5-b30f-c81718169aa4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowPauseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -361,12 +361,12 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_MapEditor_RotateOrientation = m_MapEditor.FindAction("RotateOrientation", throwIfNotFound: true);
         m_MapEditor_SelectButtonStraight = m_MapEditor.FindAction("SelectButtonStraight", throwIfNotFound: true);
         m_MapEditor_SelectButtonTurn = m_MapEditor.FindAction("SelectButtonTurn", throwIfNotFound: true);
-        m_MapEditor_ShowPauseMenu = m_MapEditor.FindAction("ShowPauseMenu", throwIfNotFound: true);
         m_MapEditor_SelectButtonTJunction = m_MapEditor.FindAction("SelectButtonTJunction", throwIfNotFound: true);
         m_MapEditor_SelectButtonCrossroad = m_MapEditor.FindAction("SelectButtonCrossroad", throwIfNotFound: true);
         m_MapEditor_SelectButtonStart = m_MapEditor.FindAction("SelectButtonStart", throwIfNotFound: true);
         m_MapEditor_SelectButtonEnd = m_MapEditor.FindAction("SelectButtonEnd", throwIfNotFound: true);
         m_MapEditor_SelectButtonDelete = m_MapEditor.FindAction("SelectButtonDelete", throwIfNotFound: true);
+        m_MapEditor_ShowPauseMenu = m_MapEditor.FindAction("ShowPauseMenu", throwIfNotFound: true);
         // Car
         m_Car = asset.FindActionMap("Car", throwIfNotFound: true);
         m_Car_Steer = m_Car.FindAction("Steer", throwIfNotFound: true);
@@ -424,12 +424,12 @@ public class @Inputs : IInputActionCollection, IDisposable
     private readonly InputAction m_MapEditor_RotateOrientation;
     private readonly InputAction m_MapEditor_SelectButtonStraight;
     private readonly InputAction m_MapEditor_SelectButtonTurn;
-    private readonly InputAction m_MapEditor_ShowPauseMenu;
     private readonly InputAction m_MapEditor_SelectButtonTJunction;
     private readonly InputAction m_MapEditor_SelectButtonCrossroad;
     private readonly InputAction m_MapEditor_SelectButtonStart;
     private readonly InputAction m_MapEditor_SelectButtonEnd;
     private readonly InputAction m_MapEditor_SelectButtonDelete;
+    private readonly InputAction m_MapEditor_ShowPauseMenu;
     public struct MapEditorActions
     {
         private @Inputs m_Wrapper;
@@ -438,12 +438,12 @@ public class @Inputs : IInputActionCollection, IDisposable
         public InputAction @RotateOrientation => m_Wrapper.m_MapEditor_RotateOrientation;
         public InputAction @SelectButtonStraight => m_Wrapper.m_MapEditor_SelectButtonStraight;
         public InputAction @SelectButtonTurn => m_Wrapper.m_MapEditor_SelectButtonTurn;
-        public InputAction @ShowPauseMenu => m_Wrapper.m_MapEditor_ShowPauseMenu;
         public InputAction @SelectButtonTJunction => m_Wrapper.m_MapEditor_SelectButtonTJunction;
         public InputAction @SelectButtonCrossroad => m_Wrapper.m_MapEditor_SelectButtonCrossroad;
         public InputAction @SelectButtonStart => m_Wrapper.m_MapEditor_SelectButtonStart;
         public InputAction @SelectButtonEnd => m_Wrapper.m_MapEditor_SelectButtonEnd;
         public InputAction @SelectButtonDelete => m_Wrapper.m_MapEditor_SelectButtonDelete;
+        public InputAction @ShowPauseMenu => m_Wrapper.m_MapEditor_ShowPauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_MapEditor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -465,9 +465,6 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @SelectButtonTurn.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonTurn;
                 @SelectButtonTurn.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonTurn;
                 @SelectButtonTurn.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonTurn;
-                @ShowPauseMenu.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
-                @ShowPauseMenu.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
-                @ShowPauseMenu.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
                 @SelectButtonTJunction.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonTJunction;
                 @SelectButtonTJunction.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonTJunction;
                 @SelectButtonTJunction.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonTJunction;
@@ -483,6 +480,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @SelectButtonDelete.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonDelete;
                 @SelectButtonDelete.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonDelete;
                 @SelectButtonDelete.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnSelectButtonDelete;
+                @ShowPauseMenu.started -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
+                @ShowPauseMenu.performed -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
+                @ShowPauseMenu.canceled -= m_Wrapper.m_MapEditorActionsCallbackInterface.OnShowPauseMenu;
             }
             m_Wrapper.m_MapEditorActionsCallbackInterface = instance;
             if (instance != null)
@@ -499,9 +499,6 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @SelectButtonTurn.started += instance.OnSelectButtonTurn;
                 @SelectButtonTurn.performed += instance.OnSelectButtonTurn;
                 @SelectButtonTurn.canceled += instance.OnSelectButtonTurn;
-                @ShowPauseMenu.started += instance.OnShowPauseMenu;
-                @ShowPauseMenu.performed += instance.OnShowPauseMenu;
-                @ShowPauseMenu.canceled += instance.OnShowPauseMenu;
                 @SelectButtonTJunction.started += instance.OnSelectButtonTJunction;
                 @SelectButtonTJunction.performed += instance.OnSelectButtonTJunction;
                 @SelectButtonTJunction.canceled += instance.OnSelectButtonTJunction;
@@ -517,6 +514,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @SelectButtonDelete.started += instance.OnSelectButtonDelete;
                 @SelectButtonDelete.performed += instance.OnSelectButtonDelete;
                 @SelectButtonDelete.canceled += instance.OnSelectButtonDelete;
+                @ShowPauseMenu.started += instance.OnShowPauseMenu;
+                @ShowPauseMenu.performed += instance.OnShowPauseMenu;
+                @ShowPauseMenu.canceled += instance.OnShowPauseMenu;
             }
         }
     }
@@ -577,12 +577,12 @@ public class @Inputs : IInputActionCollection, IDisposable
         void OnRotateOrientation(InputAction.CallbackContext context);
         void OnSelectButtonStraight(InputAction.CallbackContext context);
         void OnSelectButtonTurn(InputAction.CallbackContext context);
-        void OnShowPauseMenu(InputAction.CallbackContext context);
         void OnSelectButtonTJunction(InputAction.CallbackContext context);
         void OnSelectButtonCrossroad(InputAction.CallbackContext context);
         void OnSelectButtonStart(InputAction.CallbackContext context);
         void OnSelectButtonEnd(InputAction.CallbackContext context);
         void OnSelectButtonDelete(InputAction.CallbackContext context);
+        void OnShowPauseMenu(InputAction.CallbackContext context);
     }
     public interface ICarActions
     {

@@ -6,7 +6,6 @@ public class MenuController : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject startSubMenu;
-    private MapEditor mapEditor;
 
     public void DisplayMainMenu() {
         mainMenu.SetActive(true);

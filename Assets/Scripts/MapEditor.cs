@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public class MapEditor : MonoBehaviour
     public Camera mainCamera;
     public GameObject plane;
     public GameObject roads;
+    public MapEditorUI mapEditorUI;
 
     [SerializeField]
     private int mapSize;
@@ -71,6 +73,34 @@ public class MapEditor : MonoBehaviour
         Vector2Int posInGrid = GetMouseCoordinateInMap();
         if (posInGrid.x == -1 || posInGrid.y == -1)
             return;
+
+        //Verify if there is already a Start road placed
+        if (selectedRoadType == Road.RoadType.Start)
+        {
+            mapEditorUI.buttonStart.interactable = false;
+            if (map.GetRoadsOfType(Road.RoadType.Start).Count > 0)
+            {
+                return;
+            }
+            else
+            {
+                mapEditorUI.buttonStart.interactable = true;
+            }
+        }
+
+        //Verify if there is already an End road placed
+        if (selectedRoadType == Road.RoadType.End)
+        {
+            mapEditorUI.buttonDelete.interactable = false;
+            if (map.GetRoadsOfType(Road.RoadType.End).Count > 0)
+            {
+                return;
+            }
+            else
+            {
+                mapEditorUI.buttonDelete.interactable = true;
+            }
+        }
 
         // Sets the block in the map object.
         map.SetRoadType(posInGrid.x, posInGrid.y, selectedRoadType);

@@ -38,14 +38,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ShowPauseMenu",
-                    "type": "Button",
-                    "id": "fbe43584-c98f-439f-b73d-7fe5ebd0367b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "SelectButtonTJunction",
                     "type": "Button",
                     "id": "bfdff75b-ccce-4e2f-a298-091399d606f8",
@@ -81,6 +73,14 @@
                     "name": "SelectButtonDelete",
                     "type": "Button",
                     "id": "aa2e282b-b1c3-45a1-b5a0-048f52be9d1c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ShowPauseMenu",
+                    "type": "Button",
+                    "id": "fbe43584-c98f-439f-b73d-7fe5ebd0367b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -155,17 +155,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7507cc32-6a30-47f5-b30f-c81718169aa4",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ShowPauseMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "50b5e9a0-888a-4d8d-ba23-3ba5c5fc5d0b",
                     "path": "<Keyboard>/3",
                     "interactions": "",
@@ -227,6 +216,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SelectButtonDelete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7507cc32-6a30-47f5-b30f-c81718169aa4",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowPauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
