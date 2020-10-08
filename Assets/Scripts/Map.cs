@@ -10,6 +10,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -100,5 +101,23 @@ public class Map
     public void SetRoadOrientation(int x, int y, Road.RoadOrientation roadOrientation)
     {
         map[x, y].Orientation = roadOrientation;
+    }
+
+    public List<Vector2> GetRoadsOfType(Road.RoadType roadType)
+    {
+        List<Vector2> result = new List<Vector2>();
+        //Verify if a specified road type is already placed
+        for (int i = 0; i < Size; i++)
+        {
+            for (int j = 0; j < Size; j++)
+            {
+                if (map[i, j].Type == roadType)
+                {
+                    result.Add(new Vector2(i, j));
+                }
+            }
+        }
+        result.Sort();
+        return result;
     }
 }
