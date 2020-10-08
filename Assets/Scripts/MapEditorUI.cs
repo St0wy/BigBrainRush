@@ -1,9 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/**
+ * @file MapEditorUI.cs
+ * @author Gawen Ackermann (gawen.ackrmnn@eduge.ch)
+ * @brief Contains the MapEditorUI class.
+ * @version 1.0
+ * @date 08.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles the UI elements of the map editor.
+/// </summary>
 public class MapEditorUI : MonoBehaviour
 {
     public Button buttonStraight;

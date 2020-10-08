@@ -1,14 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/**
+ * @file SaveSystem.cs
+ * @author Fabian Huber (fabian.hbr@eduge.ch) and Gawen Ackermann (gawen.ackrmnn@eduge.ch)
+ * @brief Contains the SaveSystem class.
+ * @version 1.0
+ * @date 08.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
+
+using System;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Handles everything related to saving and loading.
+/// </summary>
 public static class SaveSystem
 {
     private const string EXTENSION = "bbrm";
@@ -16,9 +25,12 @@ public static class SaveSystem
     private const string DEFAULT_NAME = "my_map";
     private const string DIRECTORY = "";
 
-    public static bool SaveMap(Map map)
+    /// <summary>
+    /// Saves the map to a binary file.
+    /// </summary>
+    /// <param name="map">Map to save.</param>
+    public static void SaveMap(Map map)
     {
-        //Regex to get only what is between / and .bbrm
         string path = EditorUtility.SaveFilePanel(WINDOW_TITLE, DIRECTORY, DEFAULT_NAME, EXTENSION);
 
         CheckExtension(path);
@@ -27,10 +39,13 @@ public static class SaveSystem
         using (FileStream fileStream = new FileStream(path, FileMode.Create))
         {
             formatter.Serialize(fileStream, map);
-            return true;
         }
     }
 
+    /// <summary>
+    /// Loads a map from a file and returns it.
+    /// </summary>
+    /// <returns>Returns the loaded file.</returns>
     public static Map LoadMap()
     {
         string path = EditorUtility.OpenFilePanel(WINDOW_TITLE, DIRECTORY, EXTENSION);
@@ -49,6 +64,10 @@ public static class SaveSystem
         }
     }
 
+    /// <summary>
+    /// Checks if the extension of the path is valid.
+    /// </summary>
+    /// <param name="path">Path to check.</param>
     private static void CheckExtension(string path)
     {
         if (Path.GetExtension(path) != "." + EXTENSION)

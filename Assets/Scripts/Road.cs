@@ -1,7 +1,20 @@
-﻿using Assets.Scripts;
+﻿/**
+ * @file Road.cs
+ * @author Fabian Huber (fabian.hbr@eduge.ch) and Gawen Ackermann (gawen.ackrmnn@eduge.ch)
+ * @brief Contains the Road class.
+ * @version 1.0
+ * @date 08.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
+
 using System;
 using UnityEngine;
 
+/// <summary>
+/// Represents a road with an orientation and a type.
+/// </summary>
 [Serializable]
 public class Road
 {
@@ -28,6 +41,7 @@ public class Road
 
     [SerializeField]
     private RoadOrientation orientation;
+
     [SerializeField]
     private RoadType type;
 
@@ -53,8 +67,18 @@ public class Road
 
     public Road() : this(DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE) { }
 
+    /// <summary>
+    /// Gets the angle in degrees of the road.
+    /// </summary>
+    public float Angle { get => GetAngle(orientation); }
+
+    /// <summary>
+    /// Gets the equivalent angle in degrees of an orientation.
+    /// </summary>
+    /// <param name="orientation">Orientation to get the angle of.</param>
+    /// <returns>Returns the equivalent angle in degrees of an orientation.</returns>
     public static float GetAngle(RoadOrientation orientation)
     {
-        return (int)orientation * 90;
+        return (float)orientation * 90;
     }
 }

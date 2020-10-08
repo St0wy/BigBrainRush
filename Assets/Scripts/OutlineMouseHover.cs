@@ -1,6 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿/**
+ * @file OutlineMouseHover.cs
+ * @author Fabian Huber (fabian.hbr@eduge.ch) and Gawen Ackermann (gawen.ackrmnn@eduge.ch)
+ * @brief Contains the OutlineMouseHover class.
+ * @version 1.0
+ * @date 08.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
+
 using UnityEngine;
 
 /// <summary>
@@ -63,6 +71,7 @@ public class OutlineMouseHover : MonoBehaviour
             currentOutlineController.ShowOutline();
         }
     }
+
     /// <summary>
     /// Hide the outline of the current outline controller if it's null.
     /// </summary>

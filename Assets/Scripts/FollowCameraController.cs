@@ -1,7 +1,21 @@
-﻿using System.Collections;
+﻿/**
+ * @file FollowCameraController.cs
+ * @author Fabian Huber (fabian.hbr@eduge.ch)
+ * @brief Contains the FollowCameraController class.
+ * Code from this tutorial : https://www.youtube.com/watch?v=j6_SMdWeGFI
+ * @version 1.0
+ * @date 01.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Makes the camera follow an object.
+/// </summary>
 public class FollowCameraController : MonoBehaviour
 {
     public Transform objectToFollow;

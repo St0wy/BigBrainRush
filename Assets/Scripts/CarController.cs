@@ -9,8 +9,6 @@
  * @copyright CFPT (c) 2020
  *
  */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -18,14 +16,22 @@ using UnityEngine;
 /// </summary>
 public class CarController : MonoBehaviour
 {
+    [Tooltip("Wheel collider for the front left wheel")]
     public WheelCollider frontLeftWheel;
+    [Tooltip("Wheel collider for the front right wheel")]
     public WheelCollider frontRightWheel;
+    [Tooltip("Wheel collider for the back left wheel")]
     public WheelCollider backLeftWheel;
+    [Tooltip("Wheel collider for the back right wheel")]
     public WheelCollider backRightWheel;
 
+    [Tooltip("Transform for the visual front left wheel")]
     public Transform frontLeftTransform;
+    [Tooltip("Transform for the visual front right wheel")]
     public Transform frontRightTransform;
+    [Tooltip("Transform for the visual back left wheel")]
     public Transform backLeftTransform;
+    [Tooltip("Transform for the visual back right wheel")]
     public Transform backRightTransform;
 
     public float maxSteerAngle = 30;
@@ -85,6 +91,12 @@ public class CarController : MonoBehaviour
         UpdateWheelPose(backRightWheel, backRightTransform);
     }
 
+
+    /// <summary>
+    /// Updates the position of the wheels.
+    /// </summary>
+    /// <param name="collider">Wheel collider of the wheel.</param>
+    /// <param name="transform">Transform of the visual wheel, not the wheel collider.</param>
     private static void UpdateWheelPose(WheelCollider collider, Transform transform)
     {
         collider.GetWorldPose(out Vector3 pos, out Quaternion rot);

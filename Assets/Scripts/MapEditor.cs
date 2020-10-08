@@ -1,9 +1,19 @@
-﻿using Assets.Scripts;
-using System;
-using UnityEditor;
+﻿/**
+ * @file MapEditor.cs
+ * @author Fabian Huber (fabian.hbr@eduge.ch) and Gawen Ackermann (gawen.ackrmnn@eduge.ch)
+ * @brief Contains the MapEditor class.
+ * @version 1.0
+ * @date 08.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Mono behaviour that handles everyting related to the map editor.
+/// </summary>
 public class MapEditor : MonoBehaviour
 {
     private const int DEFAULT_MAP_SIZE = 25;
@@ -47,15 +57,21 @@ public class MapEditor : MonoBehaviour
         blockScale = planeRenderer.bounds.size.x / map.Size;
     }
 
-
+    /// <summary>
+    /// Saves the map.
+    /// </summary>
     public void SaveMap()
     {
         SaveSystem.SaveMap(map);
-
     }
+
+    /// <summary>
+    /// Loads the map from a file.
+    /// </summary>
     public void LoadMap()
     {
-        SaveSystem.LoadMap();
+        map = SaveSystem.LoadMap();
+        GenerateGrid(map);
     }
 
     private void Start()
@@ -66,7 +82,7 @@ public class MapEditor : MonoBehaviour
     /// <summary>
     /// Places a block at the position of the mouse.
     /// </summary>
-    private void PlaceRoadPerformed(InputAction.CallbackContext obj)
+    private void PlaceRoadPerformed(InputAction.CallbackContext _)
     {
         Vector2Int posInGrid = GetMouseCoordinateInMap();
         if (posInGrid.x == -1 || posInGrid.y == -1)
@@ -99,11 +115,11 @@ public class MapEditor : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Maps a point in the grid to a point in the world.
     /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <returns></returns>
+    /// <param name="x">X position in the grid.</param>
+    /// <param name="y">Y position in the grid.</param>
+    /// <returns>Returns the position in the world of the point that's in the grid.</returns>
     public Vector3 MapPointToWorldPoint(int x, int y)
     {
         float posX = plane.transform.position.x - planeRenderer.bounds.size.x / 2 + blockScale / 2;

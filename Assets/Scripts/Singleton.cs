@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿/**
+ * @file Singleton.cs
+ * @author wiki.unity3d.com
+ * @brief Contains the Singleton class.
+ * This class was taken from : http://wiki.unity3d.com/index.php/Singleton
+ */
+
+using UnityEngine;
 
 /// <summary>
 /// Inherit from this base class to create a singleton.
 /// e.g. public class MyClassName : Singleton<MyClassName> {}
-/// Taken from : http://wiki.unity3d.com/index.php/Singleton
+/// 
 /// </summary>
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {

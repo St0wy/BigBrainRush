@@ -1,13 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/**
+ * @file OutlineController.cs
+ * @author Gawen Ackermann (gawen.ackrmnn@eduge.ch)
+ * @brief Contains the OutlineController class.
+ * @version 1.0
+ * @date 08.10.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
+
 using UnityEngine;
 
+/// <summary>
+/// Handles the displayal of outlines.
+/// </summary>
 [RequireComponent(typeof(MeshRenderer))]
 public class OutlineController : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
     public float maxOutlineWidth;
     public Color outlineColor;
+
+    private MeshRenderer meshRenderer;
 
     private void Awake()
     {
