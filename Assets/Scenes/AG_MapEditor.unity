@@ -3087,5 +3087,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8025575973552137349, guid: 69961201c64fd0d44888eb624246a134, type: 3}
+      propertyPath: roadsPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1018860095506324450, guid: a9b74e0d1db20d743b946fa96774aef6, type: 3}
+    - target: {fileID: 8025575973552137349, guid: 69961201c64fd0d44888eb624246a134, type: 3}
+      propertyPath: roadsPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5923788601821320972, guid: ae9b9713a40fc2e4281aa6e5d1e63561, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69961201c64fd0d44888eb624246a134, type: 3}
