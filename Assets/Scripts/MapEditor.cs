@@ -80,6 +80,7 @@ public class MapEditor : MonoBehaviour
     {
         GenerateGrid(map);
     }
+
     /// <summary>
     /// Checks if the the provided button has road of his type placed. If yes, it disable it.
     /// </summary>
