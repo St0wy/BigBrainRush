@@ -80,6 +80,18 @@ public class MapEditor : MonoBehaviour
     {
         GenerateGrid(map);
     }
+
+    private void Update()
+    {
+        if (mapEditorUI.pauseMenu.active)
+        {
+            highlightRange = 0;
+        }
+        else { 
+            highlightRange = DEFAULT_HIGHLIGHT_RANGE;
+        }
+    }
+
     /// <summary>
     /// Checks if the the provided button has road of his type placed. If yes, it disable it.
     /// </summary>
