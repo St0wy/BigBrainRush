@@ -109,13 +109,15 @@ public class MapEditor : MonoBehaviour
         //Verify if we can enable the button for the start and end
         CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart);
         CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd);
-        if (selectedRoadType == Road.RoadType.Start && !CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart))
+
+        if (!CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart))
         {
-            return;
+            if(selectedRoadType == Road.RoadType.Start)
+                return;
         }
-        if (selectedRoadType == Road.RoadType.End && !CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd))
-        {
-            return;
+        if (!CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd)) { 
+            if (selectedRoadType == Road.RoadType.End)
+                return;
         }
 
         // Sets the block in the map object.
