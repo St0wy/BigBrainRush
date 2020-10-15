@@ -1032,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5036403806053871721, guid: b92bff4f058b2d64a90b99db572daec5, type: 3}
       propertyPath: m_Text
-      value: Save actual map
+      value: Save current map
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b92bff4f058b2d64a90b99db572daec5, type: 3}
