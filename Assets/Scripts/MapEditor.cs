@@ -101,6 +101,7 @@ public class MapEditor : MonoBehaviour
     /// </summary>
     private void PlaceRoadPerformed(InputAction.CallbackContext _)
     {
+        string nameOfAudioToPlay = "";
         Vector2Int posInGrid = GetMouseCoordinateInMap();
         if (posInGrid.x == -1 || posInGrid.y == -1)
             return;
@@ -117,6 +118,10 @@ public class MapEditor : MonoBehaviour
         if (!CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd)) { 
             if (selectedRoadType == Road.RoadType.End)
                 return;
+        }
+        nameOfAudioToPlay = "BlockPlaced";
+        if (selectedRoadType == Road.RoadType.Empty) {
+            nameOfAudioToPlay = "BlockRemoved";
         }
 
         // Sets the block in the map object.
@@ -140,6 +145,9 @@ public class MapEditor : MonoBehaviour
         // Place road in array
         GameObject oldBlock = blocks[posInGrid.x, posInGrid.y];
         blocks[posInGrid.x, posInGrid.y] = road;
+
+        //Play the audio
+        FindObjectOfType<AudioController>().Play(nameOfAudioToPlay);
 
         // Destroy the old block
         Destroy(oldBlock);
@@ -259,7 +267,8 @@ public class MapEditor : MonoBehaviour
         {
             orientationValue = 0;
         }
-
+        //Play the audio
+        FindObjectOfType<AudioController>().Play("BlockOrientationChanged");
         SelectOrientation((Road.RoadOrientation)orientationValue);
     }
 
