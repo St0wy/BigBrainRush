@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 302987655}
   - component: {fileID: 302987654}
   - component: {fileID: 302987653}
+  - component: {fileID: 302987657}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -544,6 +545,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &302987657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302987652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e984103d85eb10144aec22d51818793f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonStraight: {fileID: 223642076}
+  buttonTurn: {fileID: 1402880919}
+  buttonTJunction: {fileID: 400860343}
+  buttonCrossroad: {fileID: 1939327376}
+  buttonStart: {fileID: 352432703}
+  buttonEnd: {fileID: 896716198}
+  buttonDelete: {fileID: 615445140}
+  pauseMenu: {fileID: 1231092102}
 --- !u!224 &312232186 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6244129379291281786, guid: b336dab14ad06434694584a7cc1bc69c, type: 3}
@@ -1412,6 +1433,7 @@ MonoBehaviour:
   mainCamera: {fileID: 72983520}
   plane: {fileID: 2026515821}
   roads: {fileID: 2065293525}
+  mapEditorUI: {fileID: 302987657}
   mapSize: 25
   highlightRange: 5000
 --- !u!4 &950550516
@@ -2169,7 +2191,6 @@ GameObject:
   - component: {fileID: 1640317434}
   - component: {fileID: 1640317435}
   - component: {fileID: 1640317437}
-  - component: {fileID: 1640317436}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -2229,26 +2250,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1640317436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640317433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e984103d85eb10144aec22d51818793f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonStraight: {fileID: 223642076}
-  buttonTurn: {fileID: 1402880919}
-  buttonTJunction: {fileID: 400860343}
-  buttonCrossroad: {fileID: 1939327376}
-  buttonStart: {fileID: 352432703}
-  buttonEnd: {fileID: 896716198}
-  buttonDelete: {fileID: 615445140}
-  pauseMenu: {fileID: 1231092102}
 --- !u!222 &1640317437
 CanvasRenderer:
   m_ObjectHideFlags: 0

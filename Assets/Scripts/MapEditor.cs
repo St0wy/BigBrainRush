@@ -10,6 +10,7 @@
  */
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// Mono behaviour that handles everyting related to the map editor.
@@ -79,6 +80,21 @@ public class MapEditor : MonoBehaviour
     {
         GenerateGrid(map);
     }
+    /// <summary>
+    /// Checks if the the provided button has road of his type placed. If yes, it disable it.
+    /// </summary>
+    /// <param name="type">Selected road type.</param>
+    /// <param name="button">Button assiociated to this type.</param>
+    /// <returns>Returns if the button is interactable or not.</returns>
+    public bool CheckUniqueButtonsActivation(Road.RoadType type, Button button)
+    {
+        button.interactable = false;
+        if (map.GetRoadsOfType(type).Count == 0)
+        {
+            button.interactable = true;
+        }
+        return button.interactable;
+    }
 
     /// <summary>
     /// Places a block at the position of the mouse.
@@ -89,32 +105,16 @@ public class MapEditor : MonoBehaviour
         if (posInGrid.x == -1 || posInGrid.y == -1)
             return;
 
-        //Verify if there is already a Start road placed
-        if (selectedRoadType == Road.RoadType.Start)
+        //Verify if we can enable the button for the start and end
+        CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart);
+        CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd);
+        if (selectedRoadType == Road.RoadType.Start && !CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart))
         {
-            mapEditorUI.buttonStart.interactable = false;
-            if (map.GetRoadsOfType(Road.RoadType.Start).Count > 0)
-            {
-                return;
-            }
-            else
-            {
-                mapEditorUI.buttonStart.interactable = true;
-            }
+            return;
         }
-
-        //Verify if there is already an End road placed
-        if (selectedRoadType == Road.RoadType.End)
+        if (selectedRoadType == Road.RoadType.End && !CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd))
         {
-            mapEditorUI.buttonDelete.interactable = false;
-            if (map.GetRoadsOfType(Road.RoadType.End).Count > 0)
-            {
-                return;
-            }
-            else
-            {
-                mapEditorUI.buttonDelete.interactable = true;
-            }
+            return;
         }
 
         // Sets the block in the map object.
@@ -188,9 +188,9 @@ public class MapEditor : MonoBehaviour
     }
 
     /// <summary>
-    /// Generate an grid from a Map on scene
+    /// Generate an grid from a Map on scene.
     /// </summary>
-    /// <param name="map">The loaded map</param>
+    /// <param name="map">The loaded map.</param>
     private void GenerateGrid(Map map)
     {
         //Delete all the existing roads

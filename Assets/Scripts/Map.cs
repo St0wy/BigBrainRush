@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -103,21 +104,9 @@ public class Map
         map[x, y].Orientation = roadOrientation;
     }
 
-    public List<Vector2> GetRoadsOfType(Road.RoadType roadType)
+    public List<Road> GetRoadsOfType(Road.RoadType roadType)
     {
-        List<Vector2> result = new List<Vector2>();
-        //Verify if a specified road type is already placed
-        for (int i = 0; i < Size; i++)
-        {
-            for (int j = 0; j < Size; j++)
-            {
-                if (map[i, j].Type == roadType)
-                {
-                    result.Add(new Vector2(i, j));
-                }
-            }
-        }
-        result.Sort();
-        return result;
+        IEnumerable<Road> roads = map.Cast<Road>().Where(r => r.Type == roadType);
+        return roads.ToList();
     }
 }
