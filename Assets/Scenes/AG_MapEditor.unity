@@ -2263,6 +2263,65 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6244129379291281786, guid: b336dab14ad06434694584a7cc1bc69c, type: 3}
   m_PrefabInstance: {fileID: 1471190117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1679380531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679380532}
+  - component: {fileID: 1679380533}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679380532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679380531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.040584415, y: 0.07021746, z: 0.05505973}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1679380533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679380531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef68468075d01814bb5ec6f6ed2244a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: b0df76a044a4cca4b848af73d7967c66, type: 3}
+    name: BlockPlaced
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 18b61251e2c2c834890f18ca0f68bbf1, type: 3}
+    name: BlockRemoved
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 499b91f05bc993040ae5bbd71bbf4c17, type: 3}
+    name: BlockOrientationChanged
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1001 &1719800747
 PrefabInstance:
   m_ObjectHideFlags: 0
