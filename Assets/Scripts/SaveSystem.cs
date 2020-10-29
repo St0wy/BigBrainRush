@@ -21,7 +21,8 @@ using UnityEngine;
 public static class SaveSystem
 {
     private const string EXTENSION = "bbrm";
-    private const string WINDOW_TITLE = "Choose a folder to save your map";
+    private const string WINDOW_TITLE_SAVE = "Choose a folder to save your map";
+    private const string WINDOW_TITLE_LOAD = "Choose a folder to save your map";
     private const string DEFAULT_NAME = "my_map";
     private const string DIRECTORY = "";
 
@@ -31,7 +32,7 @@ public static class SaveSystem
     /// <param name="map">Map to save.</param>
     public static void SaveMap(Map map)
     {
-        string path = EditorUtility.SaveFilePanel(WINDOW_TITLE, DIRECTORY, DEFAULT_NAME, EXTENSION);
+        string path = EditorUtility.SaveFilePanel(WINDOW_TITLE_SAVE, DIRECTORY, DEFAULT_NAME, EXTENSION);
 
         CheckExtension(path);
 
@@ -48,7 +49,7 @@ public static class SaveSystem
     /// <returns>Returns the loaded file.</returns>
     public static Map LoadMap()
     {
-        string path = EditorUtility.OpenFilePanel(WINDOW_TITLE, DIRECTORY, EXTENSION);
+        string path = EditorUtility.OpenFilePanel(WINDOW_TITLE_LOAD, DIRECTORY, EXTENSION);
         CheckExtension(path);
         if (!File.Exists(path))
         {
