@@ -22,9 +22,19 @@ public class MenuController : MonoBehaviour
     /// <summary>
     /// Displays the main menu and hides submenues.
     /// </summary>
-    public void DisplayMainMenu() {
-        mainMenu.SetActive(true);
-        startSubMenu.SetActive(false);
+    public void DisplayMainMenu()
+    {
+        if (mainMenu != null && startSubMenu != null)
+        {
+            mainMenu.SetActive(true);
+            startSubMenu.SetActive(false);
+        }
+    }
+
+    public void PlaySound()
+    {
+        //Play the audio
+        FindObjectOfType<AudioController>().Play("Click");
     }
 
     /// <summary>
