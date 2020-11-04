@@ -2,50 +2,38 @@
  * @file CarController.cs
  * @author Fabian Huber (fabian.hbr@eduge.ch)
  * @brief Contains the CarController class.
- * Code from this tutorial : https://www.youtube.com/watch?v=j6_SMdWeGFI
- * @version 1.0
- * @date 01.10.2020
+ * @version 1.1
+ * @date 04.11.2020
  *
  * @copyright CFPT (c) 2020
  *
  */
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEngine;
 
 /// <summary>
-/// Handles the movement of the car.
+/// Tank controls for a car.
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
-    [Tooltip("Wheel collider for the front left wheel")]
-    public WheelCollider frontLeftWheel;
-    [Tooltip("Wheel collider for the front right wheel")]
-    public WheelCollider frontRightWheel;
-    [Tooltip("Wheel collider for the back left wheel")]
-    public WheelCollider backLeftWheel;
-    [Tooltip("Wheel collider for the back right wheel")]
-    public WheelCollider backRightWheel;
-
-    [Tooltip("Transform for the visual front left wheel")]
-    public Transform frontLeftTransform;
-    [Tooltip("Transform for the visual front right wheel")]
-    public Transform frontRightTransform;
-    [Tooltip("Transform for the visual back left wheel")]
-    public Transform backLeftTransform;
-    [Tooltip("Transform for the visual back right wheel")]
-    public Transform backRightTransform;
-
-    public float maxSteerAngle = 30;
-    public float motorForce = 50;
+    public float accelerationSpeed = 0.5f;
+    public float rotationSpeed = 3f;
 
     private float horizontalInput;
     private float verticalInput;
-    private float steeringAngle;
 
     private Inputs inputActions;
+    private Rigidbody rb;
 
     private void Awake()
     {
         inputActions = new Inputs();
+        rb = GetComponentInChildren<Rigidbody>();
 
         inputActions.Car.Steer.performed += ctx => horizontalInput = ctx.ReadValue<float>();
         inputActions.Car.Steer.canceled += ctx => horizontalInput = 0f;
@@ -56,62 +44,35 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Steer();
         Accelerate();
-        UpdateWheelPoses();
+        Turn();
     }
 
-    /// <summary>
-    /// Steers the car on the inputed direction.
-    /// </summary>
-    public void Steer()
-    {
-        steeringAngle = maxSteerAngle * horizontalInput;
-        frontLeftWheel.steerAngle = steeringAngle;
-        frontRightWheel.steerAngle = steeringAngle;
-    }
-
-    /// <summary>
-    /// Accelerates the car.
-    /// </summary>
     private void Accelerate()
     {
-        frontLeftWheel.motorTorque = verticalInput * motorForce;
-        frontRightWheel.motorTorque = verticalInput * motorForce;
+        if (verticalInput != 0f)
+        {
+            Vector3 mov = transform.forward * verticalInput * accelerationSpeed;
+            rb.velocity += mov;
+        }
     }
 
-    /// <summary>
-    /// Updates the position of the wheels.
-    /// </summary>
-    private void UpdateWheelPoses()
+    private void Turn()
     {
-        UpdateWheelPose(frontLeftWheel, frontLeftTransform);
-        UpdateWheelPose(frontRightWheel, frontRightTransform);
-        UpdateWheelPose(backLeftWheel, backLeftTransform);
-        UpdateWheelPose(backRightWheel, backRightTransform);
-    }
-
-
-    /// <summary>
-    /// Updates the position of the wheels.
-    /// </summary>
-    /// <param name="collider">Wheel collider of the wheel.</param>
-    /// <param name="transform">Transform of the visual wheel, not the wheel collider.</param>
-    private static void UpdateWheelPose(WheelCollider collider, Transform transform)
-    {
-        collider.GetWorldPose(out Vector3 pos, out Quaternion rot);
-
-        transform.position = pos;
-        transform.rotation = rot;
+        if(horizontalInput != 0)
+        {
+            float rotation = horizontalInput * rotationSpeed;
+            rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y + rotation, rb.rotation.eulerAngles.z);
+        }
     }
 
     private void OnEnable()
     {
-        inputActions.Car.Enable();
+        inputActions.Enable();
     }
 
     private void OnDisable()
     {
-        inputActions.Car.Disable();
+        inputActions.Disable();
     }
 }
