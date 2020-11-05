@@ -277,6 +277,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightRange: 5000
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &192127150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1549,11 +1552,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f19a6607583a5479138e95d585db4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 72983520}
-  plane: {fileID: 2026515821}
   roads: {fileID: 2065293525}
-  mapEditorUI: {fileID: 302987657}
+  plane: {fileID: 2026515821}
   mapSize: 25
+  mainCamera: {fileID: 72983520}
+  mapEditorUI: {fileID: 302987657}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
   highlightRange: 5000
 --- !u!4 &950550516
 Transform:

@@ -22,6 +22,7 @@ public class MapEditor : MapGenerator
 
     public Camera mainCamera;
     public MapEditorUI mapEditorUI;
+    public LayerMask wallLayer;
 
     [SerializeField]
     private int highlightRange;
@@ -160,7 +161,7 @@ public class MapEditor : MapGenerator
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         // Launch a raycast with this ray
-        if (Physics.Raycast(ray, out RaycastHit hit, highlightRange))
+        if (Physics.Raycast(ray, out RaycastHit hit, highlightRange, ~wallLayer))
         {
             Debug.DrawRay(ray.origin, ray.direction * 1000, Color.yellow);
             // Check if we hit something
