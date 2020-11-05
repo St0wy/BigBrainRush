@@ -22,6 +22,7 @@ public class OutlineMouseHover : MonoBehaviour
     private Camera cam;
     private OutlineController previousOutlineController;
     private OutlineController currentOutlineController;
+    public LayerMask wallLayer;
 
     private void Awake()
     {
@@ -34,8 +35,9 @@ public class OutlineMouseHover : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         // Launch a raycast with this ray
-        if (Physics.Raycast(ray, out RaycastHit hit, highlightRange))
+        if (Physics.Raycast(ray, out RaycastHit hit, highlightRange, ~wallLayer))
         {
+            Debug.Log(hit.transform);
             Debug.DrawRay(ray.origin, ray.direction * 1000, Color.yellow);
             // Check if we hit something
             if (hit.transform == null)
