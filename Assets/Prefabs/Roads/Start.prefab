@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7965679030706604412}
   - component: {fileID: 695251298370807491}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272365113889442675}
   - component: {fileID: 7365051902533282471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3226516175604934984}
   - component: {fileID: 2587294935469933422}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
