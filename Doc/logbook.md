@@ -29,6 +29,10 @@
 -   Chargement de la map pour pouvoir conduire dessus
 -   Tests de la conduite sur une map -> décision de recommencer les contrôles de la voiture
 
+## 04/11/2020
+
+-   Refonte des contrôles de la voiture done
+
 ## 05/11/2020
 
 ## 12/11/2020
