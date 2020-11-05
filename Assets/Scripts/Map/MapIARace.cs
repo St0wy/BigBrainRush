@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(MapGenerator))]
-public class MapRaceController : MonoBehaviour
+class MapIARace : MonoBehaviour
 {
     public const float CAR_OFFSET = 5f;
 
-    public Camera mainCam;
     public GameObject car;
+    public string mapName = "trainMap1.bbrm";
+    public Camera mainCam;
 
     private MapGenerator generator;
     private Map map;
@@ -20,22 +24,8 @@ public class MapRaceController : MonoBehaviour
 
     private void Start()
     {
-        LoadMap();
-        mainCam.clearFlags = CameraClearFlags.Skybox;
-    }
-
-    /// <summary>
-    /// Loads the map from a file.
-    /// </summary>
-    public void LoadMap()
-    {
-        // Loads the file of the map
-        map = SaveSystem.LoadMap();
-
-        // Generates the map on the scene
+        map = SaveSystem.LoadMap($"{Application.dataPath}/Maps/{mapName}");
         generator.GenerateGrid(map);
-
-        // Sets the start point of the car
         Vector2Int startCoordinate = map.GetCoordinate(map.Start);
         Vector3 startPos = generator.MapPointToWorldPoint(startCoordinate);
         startPos.y += CAR_OFFSET;
@@ -46,5 +36,6 @@ public class MapRaceController : MonoBehaviour
             angle + 90,
             car.transform.rotation.eulerAngles.z);
         car.gameObject.SetActive(true);
+        mainCam.clearFlags = CameraClearFlags.Skybox;
     }
 }

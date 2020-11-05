@@ -44,12 +44,22 @@ public static class SaveSystem
     }
 
     /// <summary>
-    /// Loads a map from a file and returns it.
+    /// Loads a map from a file panel and returns it.
     /// </summary>
     /// <returns>Returns the loaded file.</returns>
     public static Map LoadMap()
     {
         string path = EditorUtility.OpenFilePanel(WINDOW_TITLE_LOAD, DIRECTORY, EXTENSION);
+        return LoadMap(path);
+    }
+
+    /// <summary>
+    /// Loads a map from a file and returns it.
+    /// </summary>
+    /// <param name="path">Path of the map file.</param>
+    /// <returns>Returns the loaded map.</returns>
+    public static Map LoadMap(string path)
+    {
         CheckExtension(path);
         if (!File.Exists(path))
         {

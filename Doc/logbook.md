@@ -35,8 +35,10 @@
 
 ## 05/11/2020
 
+-   Début MLAgents
+-   Pose des colliders sur les blocs de la map
+-   Fix bug de l'éditeur de map
+
 ## 12/11/2020
 
 ## 19/11/2020
-
-## 26/11/2020

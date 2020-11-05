@@ -182,11 +182,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 227137382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 467d5d6a8c520cd4d8a934ceda2c0758, type: 3}
+  m_Script: {fileID: 11500000, guid: 623140f2200d09a4aa2d895b2a27c66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 1791060717}
   car: {fileID: 778261028}
+  mapName: trainMap1.bbrm
+  mainCam: {fileID: 1791060717}
 --- !u!1 &346323741
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5359245504613531148, guid: 6af8ef207cc6d8746a0713b3c5350d7b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6063731185647221637, guid: 6af8ef207cc6d8746a0713b3c5350d7b, type: 3}
       propertyPath: maxSteerAngle
