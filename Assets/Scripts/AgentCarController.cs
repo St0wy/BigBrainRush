@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Unity.Profiling;
 using UnityEngine;
 using Unity.MLAgents;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Tank controls for a car.
@@ -23,57 +24,63 @@ using Unity.MLAgents;
 public class AgentCarController : Agent
 {
     public float accelerationSpeed = 0.5f;
-    public float rotationSpeed = 3f;
+    public float rotationSpeed = 1f;
 
-    private float horizontalInput;
-    private float verticalInput;
-
-    private Inputs inputActions;
+    //private Inputs inputActions;
     private Rigidbody rb;
 
-    private void Awake()
+    public override void Initialize()
     {
-        inputActions = new Inputs();
+        base.Initialize();
+        //inputActions = new Inputs();
         rb = GetComponentInChildren<Rigidbody>();
-
-        inputActions.Car.Steer.performed += ctx => horizontalInput = ctx.ReadValue<float>();
-        inputActions.Car.Steer.canceled += ctx => horizontalInput = 0f;
-
-        inputActions.Car.Accelerate.performed += ctx => verticalInput = ctx.ReadValue<float>();
-        inputActions.Car.Accelerate.canceled += ctx => verticalInput = 0f;
     }
 
-    private void FixedUpdate()
+    //private void Awake()
+    //{
+    //    inputActions.Car.Steer.performed += ctx => horizontalInput = ctx.ReadValue<float>();
+    //    inputActions.Car.Steer.canceled += ctx => horizontalInput = 0f;
+    //    inputActions.Car.Accelerate.performed += ctx => verticalInput = ctx.ReadValue<float>();
+    //    inputActions.Car.Accelerate.canceled += ctx => verticalInput = 0f;
+    //}
+
+    public override void OnActionReceived(float[] vectorAction)
     {
-        Accelerate();
-        Turn();
+        Accelerate(vectorAction[1]);
+        Turn(vectorAction[0]);
     }
 
-    private void Accelerate()
+    public override void Heuristic(float[] actionsOut)
     {
-        if (verticalInput != 0f)
+        float hAxis = 0f;
+        if (Keyboard.current.aKey.isPressed)
         {
-            Vector3 mov = transform.forward * verticalInput * accelerationSpeed;
+            hAxis = -1f;
+        }
+        else if (Keyboard.current.dKey.isPressed)
+        {
+            hAxis = 1f;
+        }
+
+        actionsOut[0] = hAxis;
+        actionsOut[1] = Keyboard.current.wKey.isPressed ? 1f : 0f;
+    }
+
+    private void Accelerate(float input)
+    {
+        if (input != 0f)
+        {
+            Vector3 mov = transform.forward * input * accelerationSpeed;
             rb.velocity += mov;
         }
     }
 
-    private void Turn()
+    private void Turn(float input)
     {
-        if(horizontalInput != 0)
+        if (input != 0)
         {
-            float rotation = horizontalInput * rotationSpeed;
+            float rotation = input * rotationSpeed;
             rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y + rotation, rb.rotation.eulerAngles.z);
         }
-    }
-
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
     }
 }

@@ -11,7 +11,7 @@ class MapIARace : MonoBehaviour
     public const float CAR_OFFSET = 5f;
 
     public GameObject car;
-    public string mapName = "trainMap1.bbrm";
+    public string mapName = "trainMap.bbrm";
     public Camera mainCam;
 
     private MapGenerator generator;

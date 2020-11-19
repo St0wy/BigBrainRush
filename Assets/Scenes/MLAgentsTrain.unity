@@ -313,6 +313,38 @@ MonoBehaviour:
   m_BehaviorName: CarController
   TeamId: 0
   m_UseChildSensors: 1
+--- !u!114 &778261030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778261028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &778261031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778261028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb8ed820231bb64d8ce04f8992d2172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  accelerationSpeed: 0.5
+  rotationSpeed: 1
 --- !u!4 &778261032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5359245504613531151, guid: 6af8ef207cc6d8746a0713b3c5350d7b, type: 3}
@@ -652,7 +684,8 @@ PrefabInstance:
       propertyPath: maxSteerAngle
       value: 50
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5359245504613531136, guid: 6af8ef207cc6d8746a0713b3c5350d7b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6af8ef207cc6d8746a0713b3c5350d7b, type: 3}
 --- !u!1001 &1355787800
 PrefabInstance:
