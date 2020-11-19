@@ -32,6 +32,7 @@ public class MapEditor : MapGenerator
     private Inputs inputs;
     private Map map;
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -52,6 +53,7 @@ public class MapEditor : MapGenerator
 
         planeRenderer = plane.GetComponent<Renderer>();
         blockScale = planeRenderer.bounds.size.x / map.Size;
+
     }
 
     /// <summary>
@@ -98,19 +100,16 @@ public class MapEditor : MapGenerator
     private void PlaceRoadPerformed(InputAction.CallbackContext _)
     {
         Vector2Int posInGrid = GetMouseCoordinateInMap();
-        if (posInGrid.x == -1 || posInGrid.y == -1)
+        if (posInGrid.x == -1 || posInGrid.y == -1 || mapEditorUI.IsBlockPlacable)
             return;
-
-        //Verify if we can enable the button for the start and end
-        CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart);
-        CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd);
 
         if (!CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart))
         {
-            if(selectedRoadType == Road.RoadType.Start)
+            if (selectedRoadType == Road.RoadType.Start)
                 return;
         }
-        if (!CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd)) { 
+        if (!CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd))
+        {
             if (selectedRoadType == Road.RoadType.End)
                 return;
         }
@@ -141,6 +140,10 @@ public class MapEditor : MapGenerator
         // Place road in array
         GameObject oldBlock = blocks[posInGrid.x, posInGrid.y];
         blocks[posInGrid.x, posInGrid.y] = road;
+
+        //Verify if we can enable the button for the start and end
+        CheckUniqueButtonsActivation(Road.RoadType.Start, mapEditorUI.buttonStart);
+        CheckUniqueButtonsActivation(Road.RoadType.End, mapEditorUI.buttonEnd);
 
         //Play the audio
         FindObjectOfType<AudioController>().Play(nameOfAudioToPlay);
