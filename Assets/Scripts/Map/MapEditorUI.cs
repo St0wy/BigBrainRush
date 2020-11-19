@@ -31,6 +31,10 @@ public class MapEditorUI : MonoBehaviour
 
     private Inputs inputActions;
 
+    private bool isBlockPlacable;
+
+    public bool IsBlockPlacable { get => isBlockPlacable; }
+
     private void Awake()
     {
         inputActions = new Inputs();
@@ -81,6 +85,14 @@ public class MapEditorUI : MonoBehaviour
 
         inputActions.MapEditor.ShowPauseMenu.started += ctx =>
         {
+            if (pauseMenu.activeSelf == false)
+            {
+                isBlockPlacable = true;
+            }
+            else
+            {
+                isBlockPlacable = false;
+            }
             pauseMenu.SetActive(!pauseMenu.activeSelf);
         };
     }
