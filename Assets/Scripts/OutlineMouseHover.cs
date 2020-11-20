@@ -37,7 +37,6 @@ public class OutlineMouseHover : MonoBehaviour
         // Launch a raycast with this ray
         if (Physics.Raycast(ray, out RaycastHit hit, highlightRange, ~wallLayer))
         {
-            Debug.Log(hit.transform);
             Debug.DrawRay(ray.origin, ray.direction * 1000, Color.yellow);
             // Check if we hit something
             if (hit.transform == null)

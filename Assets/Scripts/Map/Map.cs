@@ -29,6 +29,7 @@ public class Map
     private readonly Road[,] map;
     [SerializeField]
     private string name;
+    private Road start = null;
 
     /// <summary>
     /// Width or height of the map. 
@@ -40,7 +41,18 @@ public class Map
     /// </summary>
     public string Name { get => name; set => name = value; }
 
-    public Road Start { get => GetRoadsOfType(Road.RoadType.Start)[0]; }
+    public Road Start
+    {
+        get
+        {
+            if (start == null)
+            {
+                start = GetRoadsOfType(Road.RoadType.Start)[0];
+            }
+
+            return start;
+        }
+    }
 
     public Map(Road[,] map)
     {
@@ -94,7 +106,7 @@ public class Map
     /// <param name="x">X coordinate of the road.</param>
     /// <param name="y">Y coordinate of the road.</param>
     /// <returns>Returns the angle in degrees of the specified road.</returns>
-    public float GetRoadAngle(int x, int y) => map[x,y].Angle;
+    public float GetRoadAngle(int x, int y) => map[x, y].Angle;
 
     /// <summary>
     /// Sets the orientation of a road in the map.
@@ -129,7 +141,7 @@ public class Map
         {
             for (int j = 0; j < Size; j++)
             {
-                if(map[i, j] == road)
+                if (map[i, j] == road)
                 {
                     return new Vector2Int(i, j);
                 }

@@ -77,8 +77,6 @@ public class MapGenerator : MonoBehaviour
                 BlockBehaviour blockBehaviour = instantiatedBlock.AddComponent<BlockBehaviour>();
                 blockBehaviour.X = x;
                 blockBehaviour.Y = y;
-
-                map.SetRoadOrientation(blockBehaviour.X, blockBehaviour.Y, Road.RoadOrientation.East);
             }
         }
     }

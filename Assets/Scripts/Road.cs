@@ -24,7 +24,10 @@ public class Road
     /// </summary>
     public enum RoadOrientation
     {
-        East, North, West, South
+        East = 0,
+        North = 1,
+        West = 2,
+        South = 3
     }
 
     /// <summary>
@@ -80,5 +83,10 @@ public class Road
     public static float GetAngle(RoadOrientation orientation)
     {
         return (float)orientation * 90;
+    }
+
+    public override string ToString()
+    {
+        return $"Orientation : {Orientation}, Type : {Type}";
     }
 }
