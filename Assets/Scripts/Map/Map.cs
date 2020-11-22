@@ -27,12 +27,14 @@ public class Map
 
     [SerializeField]
     private readonly Road[,] map;
+
     [SerializeField]
     private string name;
+
     private Road start = null;
 
     /// <summary>
-    /// Width or height of the map. 
+    /// Width or height of the map.
     /// </summary>
     public int Size => (int)Math.Sqrt(map.Length);
 
@@ -71,7 +73,9 @@ public class Map
         }
     }
 
-    public Map() : this(DEFAULT_MAP_SIZE) { }
+    public Map() : this(DEFAULT_MAP_SIZE)
+    {
+    }
 
     /// <summary>
     /// Sets the type of a road in the map.

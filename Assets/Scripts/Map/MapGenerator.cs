@@ -8,6 +8,7 @@
  * @copyright CFPT (c) 2020
  *
  */
+
 using UnityEngine;
 
 /// <summary>
@@ -19,10 +20,10 @@ public class MapGenerator : MonoBehaviour
 
     [Tooltip("Gameobject where all the generated roads are.")]
     public GameObject roads;
+
     public GameObject plane;
     public int mapSize = DEFAULT_MAP_SIZE;
 
-    
     protected Renderer planeRenderer;
     protected float blockScale;
     protected GameObject[,] blocks;
@@ -34,7 +35,7 @@ public class MapGenerator : MonoBehaviour
             mapSize = DEFAULT_MAP_SIZE;
 
         planeRenderer = plane.GetComponent<Renderer>();
-        
+
         blockScale = planeRenderer.bounds.size.x / mapSize;
 
         blocks = new GameObject[mapSize, mapSize];

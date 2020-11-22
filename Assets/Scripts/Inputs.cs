@@ -9,6 +9,7 @@ using UnityEngine.InputSystem.Utilities;
 public class @Inputs : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
+
     public @Inputs()
     {
         asset = InputActionAsset.FromJson(@"{
@@ -419,6 +420,7 @@ public class @Inputs : IInputActionCollection, IDisposable
 
     // MapEditor
     private readonly InputActionMap m_MapEditor;
+
     private IMapEditorActions m_MapEditorActionsCallbackInterface;
     private readonly InputAction m_MapEditor_PlaceRoad;
     private readonly InputAction m_MapEditor_RotateOrientation;
@@ -430,10 +432,16 @@ public class @Inputs : IInputActionCollection, IDisposable
     private readonly InputAction m_MapEditor_SelectButtonEnd;
     private readonly InputAction m_MapEditor_SelectButtonDelete;
     private readonly InputAction m_MapEditor_ShowPauseMenu;
+
     public struct MapEditorActions
     {
         private @Inputs m_Wrapper;
-        public MapEditorActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+
+        public MapEditorActions(@Inputs wrapper)
+        {
+            m_Wrapper = wrapper;
+        }
+
         public InputAction @PlaceRoad => m_Wrapper.m_MapEditor_PlaceRoad;
         public InputAction @RotateOrientation => m_Wrapper.m_MapEditor_RotateOrientation;
         public InputAction @SelectButtonStraight => m_Wrapper.m_MapEditor_SelectButtonStraight;
@@ -444,11 +452,29 @@ public class @Inputs : IInputActionCollection, IDisposable
         public InputAction @SelectButtonEnd => m_Wrapper.m_MapEditor_SelectButtonEnd;
         public InputAction @SelectButtonDelete => m_Wrapper.m_MapEditor_SelectButtonDelete;
         public InputAction @ShowPauseMenu => m_Wrapper.m_MapEditor_ShowPauseMenu;
-        public InputActionMap Get() { return m_Wrapper.m_MapEditor; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
+
+        public InputActionMap Get()
+        {
+            return m_Wrapper.m_MapEditor;
+        }
+
+        public void Enable()
+        {
+            Get().Enable();
+        }
+
+        public void Disable()
+        {
+            Get().Disable();
+        }
+
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MapEditorActions set) { return set.Get(); }
+
+        public static implicit operator InputActionMap(MapEditorActions set)
+        {
+            return set.Get();
+        }
+
         public void SetCallbacks(IMapEditorActions instance)
         {
             if (m_Wrapper.m_MapEditorActionsCallbackInterface != null)
@@ -520,24 +546,50 @@ public class @Inputs : IInputActionCollection, IDisposable
             }
         }
     }
+
     public MapEditorActions @MapEditor => new MapEditorActions(this);
 
     // Car
     private readonly InputActionMap m_Car;
+
     private ICarActions m_CarActionsCallbackInterface;
     private readonly InputAction m_Car_Steer;
     private readonly InputAction m_Car_Accelerate;
+
     public struct CarActions
     {
         private @Inputs m_Wrapper;
-        public CarActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+
+        public CarActions(@Inputs wrapper)
+        {
+            m_Wrapper = wrapper;
+        }
+
         public InputAction @Steer => m_Wrapper.m_Car_Steer;
         public InputAction @Accelerate => m_Wrapper.m_Car_Accelerate;
-        public InputActionMap Get() { return m_Wrapper.m_Car; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
+
+        public InputActionMap Get()
+        {
+            return m_Wrapper.m_Car;
+        }
+
+        public void Enable()
+        {
+            Get().Enable();
+        }
+
+        public void Disable()
+        {
+            Get().Disable();
+        }
+
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CarActions set) { return set.Get(); }
+
+        public static implicit operator InputActionMap(CarActions set)
+        {
+            return set.Get();
+        }
+
         public void SetCallbacks(ICarActions instance)
         {
             if (m_Wrapper.m_CarActionsCallbackInterface != null)
@@ -561,8 +613,10 @@ public class @Inputs : IInputActionCollection, IDisposable
             }
         }
     }
+
     public CarActions @Car => new CarActions(this);
     private int m_KeyboardSchemeIndex = -1;
+
     public InputControlScheme KeyboardScheme
     {
         get
@@ -571,22 +625,34 @@ public class @Inputs : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_KeyboardSchemeIndex];
         }
     }
+
     public interface IMapEditorActions
     {
         void OnPlaceRoad(InputAction.CallbackContext context);
+
         void OnRotateOrientation(InputAction.CallbackContext context);
+
         void OnSelectButtonStraight(InputAction.CallbackContext context);
+
         void OnSelectButtonTurn(InputAction.CallbackContext context);
+
         void OnSelectButtonTJunction(InputAction.CallbackContext context);
+
         void OnSelectButtonCrossroad(InputAction.CallbackContext context);
+
         void OnSelectButtonStart(InputAction.CallbackContext context);
+
         void OnSelectButtonEnd(InputAction.CallbackContext context);
+
         void OnSelectButtonDelete(InputAction.CallbackContext context);
+
         void OnShowPauseMenu(InputAction.CallbackContext context);
     }
+
     public interface ICarActions
     {
         void OnSteer(InputAction.CallbackContext context);
+
         void OnAccelerate(InputAction.CallbackContext context);
     }
 }

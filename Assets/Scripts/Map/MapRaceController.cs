@@ -1,7 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/**
+ * @file MapRaceController.cs
+ * @author Fabian Huber (fabian.hbr@eduge.ch)
+ * @brief Contains the MapRaceController class.
+ * @version 1.0
+ * @date 22.11.2020
+ *
+ * @copyright CFPT (c) 2020
+ *
+ */
 using UnityEngine;
 
+/// <summary>
+/// Handles the loading of a map on the race scene.
+/// </summary>
 [RequireComponent(typeof(MapGenerator))]
 public class MapRaceController : MonoBehaviour
 {
@@ -39,12 +50,10 @@ public class MapRaceController : MonoBehaviour
         // Sets the start point of the car
         Road startRoad = map.Start;
         Vector2Int startCoordinate = map.GetCoordinate(startRoad);
-        Debug.Log(startRoad);
         Vector3 startPos = generator.MapPointToWorldPoint(startCoordinate);
         startPos.y += CAR_OFFSET;
         car.transform.position = startPos;
         float angle = map.GetRoadAngle(startCoordinate.x, startCoordinate.y);
-        Debug.Log($"Angle : {angle + CAR_ANGLE_OFFSET}");
         car.transform.rotation = Quaternion.Euler(
             car.transform.rotation.eulerAngles.x,
             angle + CAR_ANGLE_OFFSET,

@@ -8,6 +8,7 @@
  * @copyright CFPT (c) 2020
  *
  */
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -32,7 +33,6 @@ public class MapEditor : MapGenerator
     private Inputs inputs;
     private Map map;
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -53,7 +53,6 @@ public class MapEditor : MapGenerator
 
         planeRenderer = plane.GetComponent<Renderer>();
         blockScale = planeRenderer.bounds.size.x / map.Size;
-
     }
 
     /// <summary>
@@ -62,6 +61,7 @@ public class MapEditor : MapGenerator
     public void SaveMap()
     {
         SaveSystem.SaveMap(map);
+        mapEditorUI.TogglePauseMenu();
     }
 
     /// <summary>
@@ -71,6 +71,7 @@ public class MapEditor : MapGenerator
     {
         map = SaveSystem.LoadMap();
         GenerateGrid(map);
+        mapEditorUI.TogglePauseMenu();
     }
 
     private void Start()
@@ -115,7 +116,8 @@ public class MapEditor : MapGenerator
         }
 
         string nameOfAudioToPlay = "BlockPlaced";
-        if (selectedRoadType == Road.RoadType.Empty) {
+        if (selectedRoadType == Road.RoadType.Empty)
+        {
             nameOfAudioToPlay = "BlockRemoved";
         }
 
@@ -127,7 +129,7 @@ public class MapEditor : MapGenerator
         Vector3 roadPos = MapPointToWorldPoint(posInGrid.x, posInGrid.y);
         Quaternion roadRotation = Quaternion.Euler(0, Road.GetAngle(selectedRoadOrientation), 0);
 
-        // Place the new block 
+        // Place the new block
         GameObject road = Instantiate(RoadAssets.Instance.roadsPrefabs[(int)selectedRoadType], roadPos, roadRotation);
         road.transform.parent = roads.transform;
         road.transform.localScale = new Vector3(blockScale, blockScale, blockScale);
@@ -182,7 +184,7 @@ public class MapEditor : MapGenerator
     }
 
     /// <summary>
-    /// Change the selected road type. 
+    /// Change the selected road type.
     /// </summary>
     /// <param name="roadType">The number to use is defined in the Road.RoadType enum.</param>
     public void SelectRoadType(int roadType)
@@ -193,7 +195,7 @@ public class MapEditor : MapGenerator
     /// <summary>
     /// Rotate the orientation for the next road that's going to be placed.
     /// </summary>
-    /// <param name="direction"> 
+    /// <param name="direction">
     /// The direction to go to, see Road.RoadOrientation to see the enum that represents it.
     /// If we are at the east, -1 is going to make us to the north and +1 to the south.
     /// </param>

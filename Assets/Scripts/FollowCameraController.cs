@@ -9,8 +9,7 @@
  * @copyright CFPT (c) 2020
  *
  */
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 /// <summary>
@@ -31,7 +30,6 @@ public class FollowCameraController : MonoBehaviour
         Vector3 lookDirection = objectToFollow.position - transform.position;
         Quaternion rot = Quaternion.LookRotation(lookDirection, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, lookSpeed);
-
     }
 
     /// <summary>

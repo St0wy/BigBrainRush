@@ -31,18 +31,12 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays the click sound for the main menu buttons.
+    /// </summary>
     public void PlaySound()
     {
         //Play the audio
         FindObjectOfType<AudioController>().Play("Click");
-    }
-
-    /// <summary>
-    /// Displays the start submenu and hides the main menu.
-    /// </summary>
-    public void DisplayStartSubMenu()
-    {
-        mainMenu.SetActive(false);
-        startSubMenu.SetActive(true);
     }
 }

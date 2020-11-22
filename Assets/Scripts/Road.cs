@@ -19,6 +19,7 @@ using UnityEngine;
 public class Road
 {
     #region Enums
+
     /// <summary>
     /// Orientation of the road on the grid.
     /// </summary>
@@ -37,7 +38,8 @@ public class Road
     {
         Straight, Turn, TJunction, Crossroads, Start, End, Empty
     }
-    #endregion
+
+    #endregion Enums
 
     private const RoadOrientation DEFAULT_ORIENTATION = RoadOrientation.North;
     private const RoadType DEFAULT_ROAD_TYPE = RoadType.Empty;
@@ -49,6 +51,7 @@ public class Road
     private RoadType type;
 
     #region Properties
+
     public RoadOrientation Orientation { get => orientation; set => orientation = value; }
 
     public RoadType Type { get => type; set => type = value; }
@@ -60,7 +63,8 @@ public class Road
             return RoadAssets.Instance.roadsPrefabs[(int)Type];
         }
     }
-    #endregion
+
+    #endregion Properties
 
     public Road(RoadOrientation orientation, RoadType type)
     {
@@ -68,7 +72,9 @@ public class Road
         Type = type;
     }
 
-    public Road() : this(DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE) { }
+    public Road() : this(DEFAULT_ORIENTATION, DEFAULT_ROAD_TYPE)
+    {
+    }
 
     /// <summary>
     /// Gets the angle in degrees of the road.
