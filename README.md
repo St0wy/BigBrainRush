@@ -18,3 +18,4 @@ doxygen Doxyfile
 This version of the program does not build because we use editor specific code.
 The only way to play the game is to launch the project in Unity.
 This is only because of the save and load file dialog.
+The first scene of the game is the Main menu one.
