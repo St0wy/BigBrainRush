@@ -9,10 +9,6 @@
  *
  */
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Profiling;
 using UnityEngine;
 
 /// <summary>
@@ -21,8 +17,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
+    public const string FINISH_LINE_TAG = "End";
+
     public float accelerationSpeed = 0.5f;
     public float rotationSpeed = 3f;
+    public GameObject winUI;
 
     private float horizontalInput;
     private float verticalInput;
@@ -48,6 +47,18 @@ public class CarController : MonoBehaviour
         Turn();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(FINISH_LINE_TAG))
+        {
+            winUI.SetActive(true);
+            enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// Accelerates the car.
+    /// </summary>
     private void Accelerate()
     {
         if (verticalInput != 0f)
@@ -57,9 +68,12 @@ public class CarController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Turns the car.
+    /// </summary>
     private void Turn()
     {
-        if(horizontalInput != 0)
+        if (horizontalInput != 0)
         {
             float rotation = horizontalInput * rotationSpeed;
             rb.rotation = Quaternion.Euler(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y + rotation, rb.rotation.eulerAngles.z);

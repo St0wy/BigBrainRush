@@ -10,7 +10,7 @@ using UnityEngine;
 /// <summary>
 /// Inherit from this base class to create a singleton.
 /// e.g. public class MyClassName : Singleton<MyClassName> {}
-/// 
+///
 /// </summary>
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -50,13 +50,18 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                         singletonObject.name = typeof(T).ToString() + " (Singleton)";
 
                         // Make instance persistent.
-                        DontDestroyOnLoad(singletonObject);
+                        //DontDestroyOnLoad(singletonObject);
                     }
                 }
 
                 return m_Instance;
             }
         }
+    }
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
     }
 
     private void OnApplicationQuit()

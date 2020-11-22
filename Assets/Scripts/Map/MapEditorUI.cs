@@ -10,7 +10,6 @@
  */
 
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
@@ -18,7 +17,6 @@ using UnityEngine.UI;
 /// </summary>
 public class MapEditorUI : MonoBehaviour
 {
-
     public Button buttonStraight;
     public Button buttonTurn;
     public Button buttonTJunction;
@@ -83,18 +81,23 @@ public class MapEditorUI : MonoBehaviour
             buttonDelete.Select();
         };
 
-        inputActions.MapEditor.ShowPauseMenu.started += ctx =>
+        inputActions.MapEditor.ShowPauseMenu.started += ctx => TogglePauseMenu();
+    }
+
+    /// <summary>
+    /// Turns on or off the pause menu.
+    /// </summary>
+    public void TogglePauseMenu()
+    {
+        if (pauseMenu.activeSelf == false)
         {
-            if (pauseMenu.activeSelf == false)
-            {
-                isBlockPlacable = true;
-            }
-            else
-            {
-                isBlockPlacable = false;
-            }
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
-        };
+            isBlockPlacable = true;
+        }
+        else
+        {
+            isBlockPlacable = false;
+        }
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
 
     private void OnEnable()
