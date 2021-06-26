@@ -1,5 +1,8 @@
 # Big Brain Rush
 
+Semester project for the second year of Technician.
+A car game with a map editor.
+
 ## Get started
 
 Install the Unity Hub and install the required version of unity for the project.
